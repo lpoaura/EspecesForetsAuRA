@@ -53,6 +53,7 @@
                 loading: false,
                 show: true,
                 enableTooltip: true,
+                dept: null,
                 zoom: 6,
                 center: [48, -1.219482],
                 displayData: false,
@@ -71,9 +72,46 @@
                     '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             }
         },
+        methods: {
+            getDatas() {
+                this.loading = true;
+                this.dept = this.$route.params.dept;
+                axios
+                    .get(
+                        "https://data.fauneauvergnerhonealpes.org/getdatas/getData.php?geotable=webgis.departements_aura&geomfield=geom&fields=code_dept,nom_dept&parameters=code_dept+ilike+%27" +
+                        this.dept +
+                        "%27",
+                        {crossdomain: true}
+                    )
+                    .then(response => {
+                        this.geojsonDept = response.data;
+                        console.log("DEPT", response.data);
+                        this.loading = false;
+                        this.bounds = L.geoJSON(this.geojsonDept).getBounds();
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+                axios
+                    .get(
+                        "https://data.fauneauvergnerhonealpes.org/getdatas/getData.php?geotable=webgis.draaf_esp_foret&geomfield=geom&fields=nb_data,nb_sp,pres_castor,list_chiro,pres_chatforest,list_amphib,list_rap_ard,list_tetrao,list_pics,list_esp_vieil_foret,list_esp_semi_ouv,list_chouettes,list_prebois&parameters=dept+ilike+%27" +
+                        this.dept +
+                        "%27",
+                        {crossdomain: true}
+                    )
+                    .then(response => {
+                        this.geojsonDatas = response.data;
+                        console.log("DATAS", response.data);
+                        this.loading = false;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
+        },
         watch: {
-            popupName: function() {
-                this.$router.push(`/${this.popupName}`)
+            '$route.params.dept'() {
+                this.getDatas()
             }
         },
         computed: {
@@ -199,104 +237,15 @@
 
                 }
             }
-            /*onEachFeatureFunction() {
-                if (!this.enableTooltip) {
-                    return () => {
-                    };
-                }
-                return (feature, layer) => {
-                    layer.bindPopup(
-                        '<h3 class="bluetxt" align="center">Synthèse de la maille</h3><br /><strong class="orangetxt">Nombre de données : </strong>' +
-                        (feature.properties['nb_data'] ? Autolinker.link(String(feature.properties[
-                            'nb_data'])) : 'Aucune') +
-                        '<br/><strong class="orangetxt">Nombre d\'espèces à enjeux : </strong>' + (feature.properties.nb_sp !==
-                        null ? Autolinker.link(String(feature.properties.nb_sp)) : 'Aucune') +
-                        '<br/><a href="docs/Preconisations_de_gestion_chiropteres.pdf" class="button tiny" target="_blank"><i class="fi-page-pdf"></i>&nbsp;Chauves-souris</a>&nbsp;' +
-                        (feature.properties['list_chiro'] ? Autolinker.link(String(
-                            feature.properties['list_chiro'])) : '<i class="greytxt">Absence de données</i>') +
-                        '<br/><a href="docs/Preconisations_de_gestion_chat_forestier.pdf" class="button tiny" target="_blank" title="Télécharger la fiche de préconisations pour ce groupe"><i class="fi-page-pdf"></i>&nbsp;Chat forestier</a>&nbsp;' +
-                        (feature
-                            .properties['pres_chatforest'] ? Autolinker.link(String(feature.properties[
-                            'pres_chatforest'])) : '<i class="greytxt">Absence de données</i>') +
-                        '<br/><a href="docs/Preconisations_de_gestion_castor.pdf" class="button tiny" target="_blank" title="Télécharger la fiche de préconisations pour ce groupe"><i class="fi-page-pdf"></i>&nbsp;Castor d\'Europe</a>&nbsp;' +
-                        (feature.properties[
-                            'pres_castor'] ? Autolinker.link(String(feature.properties['pres_castor'])) :
-                            '<i class="greytxt">Absence de données</i>') +
-                        '<br/><a href="docs/Preconisations_de_gestion_amphibiens.pdf" class="button tiny" target="_blank" title="Télécharger la fiche de préconisations pour ce groupe"><i class="fi-page-pdf"></i>&nbsp;Amphibiens</a>&nbsp;' +
-                        (feature.properties[
-                            'list_amphib'] ? Autolinker.link(String(feature.properties['list_amphib'])) :
-                            '<i class="greytxt">Absence de données</i>') +
-                        '<br/><a href="docs/Preconisations_de_gestion_rapaces_ardeides.pdf" class="button tiny" target="_blank" title="Télécharger la fiche de préconisations pour ce groupe"><i class="fi-page-pdf"></i>&nbsp;Rapaces et Ardéidés</a>&nbsp;' +
-                        (
-                            feature.properties['list_rap_ard'] ? Autolinker.link(String(feature.properties[
-                                'list_rap_ard'])) : '<i class="greytxt">Absence de données</i>') +
-                        '<br/><a href="docs/Preconisations_de_gestion_tetraonides.pdf" class="button tiny" target="_blank" title="Télécharger la fiche de préconisations pour ce groupe"><i class="fi-page-pdf"></i>&nbsp;Tétraonidés</a>&nbsp;' +
-                        (feature.properties[
-                            'list_tetrao'] ? Autolinker.link(String(feature.properties['list_tetrao'])) :
-                            '<i class="greytxt">Absence de données</i>') +
-                        '<br/><a href="docs/Preconisations_de_gestion_pics.pdf" class="button tiny" target="_blank" title="Télécharger la fiche de préconisations pour ce groupe"><i class="fi-page-pdf"></i>&nbsp;Pics</a>&nbsp;' +
-                        (feature.properties[
-                            'list_pics'] ? Autolinker.link(String(feature.properties['list_pics'])) :
-                            '<i class="greytxt">Absence de données</i>') +
-                        '<br/><a href="docs/Preconisations_de_gestion_vieilles_foret.pdf" class="button tiny" target="_blank" title="Télécharger la fiche de préconisations pour ce groupe"><i class="fi-page-pdf"></i>&nbsp;Espèces de vieilles forêts</a>&nbsp;' +
-                        (feature.properties['list_esp_vieil_foret'] ? Autolinker.link(String(feature.properties[
-                            'list_esp_vieil_foret'])) : '<i class="greytxt">Absence de données</i>') +
-                        '<br/><a href="docs/Preconisations_de_gestion_semi_ouverts.pdf" class="button tiny" target="_blank" title="Télécharger la fiche de préconisations pour ce groupe"><i class="fi-page-pdf"></i>&nbsp;Espèces de milieux semi-ouverts</a>&nbsp;' +
-                        (feature.properties['list_esp_semi_ouv'] ? Autolinker.link(String(feature.properties[
-                            'list_esp_semi_ouv'])) : '<i class="greytxt">Absence de données</i>') +
-                        '<br/><a href="docs/Preconisations_de_gestion_chouettes.pdf" class="button tiny" target="_blank" title="Télécharger la fiche de préconisations pour ce groupe"><i class="fi-page-pdf"></i>&nbsp;Chouettes</a>&nbsp;' +
-                        (feature.properties[
-                            'list_chouettes'] ? Autolinker.link(String(feature.properties['list_chouettes'])) :
-                            '<i class="greytxt">Absence de données</i>') +
-                        '<br/><a href="docs/Preconisations_de_gestion_prebois.pdf" class="button tiny" target="_blank" title="Télécharger la fiche de préconisations pour ce groupe"><i class="fi-page-pdf"></i>&nbsp;Espèces de prébois</a>&nbsp;' +
-                        (feature.properties[
-                            'list_prebois'] ? Autolinker.link(String(feature.properties['list_prebois'])) :
-                            '<i class="greytxt">Absence de données</i>'),
-                        {
-                            permanent: false,
-                            sticky: true
-                        }
-                    );
-                };
-            }*/
         },
         created() {
-            this.loading = true;
-            axios
-                .get(
-                    "https://data.fauneauvergnerhonealpes.org/getdatas/getData.php?geotable=webgis.departements_aura&geomfield=geom&fields=code_dept,nom_dept&parameters=code_dept+ilike+%27" +
-                    this.$route.params.dept +
-                    "%27",
-                    {crossdomain: true}
-                )
-                .then(response => {
-                    this.geojsonDept = response.data;
-                    console.log("DEPT", response.data);
-                    this.loading = false;
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-            axios
-                .get(
-                    "https://data.fauneauvergnerhonealpes.org/getdatas/getData.php?geotable=webgis.draaf_esp_foret&geomfield=geom&fields=nb_data,nb_sp,pres_castor,list_chiro,pres_chatforest,list_amphib,list_rap_ard,list_tetrao,list_pics,list_esp_vieil_foret,list_esp_semi_ouv,list_chouettes,list_prebois&parameters=dept+ilike+%27" +
-                    this.$route.params.dept +
-                    "%27",
-                    {crossdomain: true}
-                )
-                .then(response => {
-                    this.geojsonDatas = response.data;
-                    console.log("DATAS", response.data);
-                    this.loading = false;
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        },
-        beforeRouteUpdate (to, from, next) {
-            console.log('beforeRouteUpdate TO', to.params.dept);
-            next({ name: 'LocalMap', params: { dept: to.params.dept }})
-        }
+            this.getDatas()
+        }// },
+        // beforeRouteUpdate (to, from, next) {
+        //     this.getDatas()
+        //     console.log('beforeRouteUpdate TO', to.params.dept);
+        //     next()
+        // }
     };
 </script>
 
