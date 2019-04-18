@@ -1,19 +1,21 @@
 <template>
-    <div id="bloc">
-        <div>
-            <div class="datas">
+    <b-container fluid id="bloc">
+        <b-row>
+            <b-col cols="4">
                 <h1>Données</h1>
                 <p><b>Nombre de données</b> {{nb_data}}</p>
                 <p><b>Nombre d'espèces</b> {{nb_sp}}</p>
                 <p><b>Chiros</b> {{chiro}}</p>
-            </div>
-            <l-map id="map" :zoom="zoom" :center="center" :bounds="bounds">
-                <l-tile-layer :url="url" :attribution="attribution"/>
-                <l-geo-json v-if="show" :geojson="geojson" :options="options" :options-style="styleFunction"/>
-            </l-map>
-        </div>
+            </b-col>
+            <b-col cols="8" class="map">
+                <l-map id="map" :zoom="zoom" :center="center" :bounds="bounds">
+                    <l-tile-layer :url="url" :attribution="attribution"/>
+                    <l-geo-json v-if="show" :geojson="geojson" :options="options" :options-style="styleFunction"/>
+                </l-map>
+            </b-col>
+        </b-row>
 
-    </div>
+    </b-container>
     </div>
 </template>
 
@@ -170,6 +172,7 @@
     #bloc {
         margin: 0;
         padding: 0;
+        height: 100%
     }
 
     #map {
@@ -325,9 +328,9 @@
     }
 
     .map {
-        height: 100%;
+        height: 800px;
         width: 100%;
-        position: absolute !important;
+        position: inherited;
     }
 
 </style>
