@@ -1,5 +1,9 @@
 module.exports = {
-    publicPath: process.env.NODE_ENV === 'production'
-        ? '~fcloitre/foretaura/'
-        : '/'
+    publicPath: undefined,
+    outputDir: undefined,
+    assetsDir: undefined,
+    runtimeCompiler: undefined,
+    productionSourceMap: false,
+    parallel: undefined,
+    css: undefined
 }

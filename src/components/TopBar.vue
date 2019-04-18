@@ -12,10 +12,7 @@
                 <b-navbar-nav class="ml-auto">
                     <b-nav-form>
                         <b-input-group>
-                            <b-form-select v-model="selected" :options="options" placeholder="Département"></b-form-select>
-                            <b-input-group-append>
-                                <b-button :to="{ name: 'LocalMap', params: { dept: selected }}" variant="info">Voir</b-button>
-                            </b-input-group-append>
+                            <b-form-select v-model="selected" v-on:change="select()" :options="options" placeholder="Département"></b-form-select>
                         </b-input-group>
                     </b-nav-form>
                     <b-nav-item v-b-modal.about-modal>A propos</b-nav-item>
@@ -40,7 +37,7 @@
             return {
                 selected: null,
                 options: [
-                    { value: null, text: 'Choisissez un départements' },
+                    {value: null, text: 'Choisissez un département'},
                     {value: '01', text: 'Ain'},
                     {value: '03', text: 'Allier'},
                     {value: '07', text: 'Ardèche'},
@@ -54,6 +51,16 @@
                     {value: '74', text: 'Haute-Savoie'},
                 ]
             }
+        },
+        methods: {
+            select(){
+                //if you want to send any data into server before redirection then you can do it here
+                if (this.selected == null) {
+                    this.$router.push("/");
+                }
+                else {
+                this.$router.push({ name: 'LocalMap', params: { dept: this.selected }});
+            }}
         }
     }
 </script>
