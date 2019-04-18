@@ -1,7 +1,19 @@
+@font-face {
+  font-family: "Abel";
+  src: url("./assets/abel-regular.ttf");
+}
+
 html,
 body {
   height: 100vh;
+  font-family: "Abel", Arial, Helvetica, sans-serif;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  color: teal;
+  font-family: "Abel", Arial, Helvetica, sans-serif;
+}
+
 .navbar{
   border-bottom: 1px solid teal;
   min-height: 80px;

@@ -1,7 +1,9 @@
 module.exports = {
-    publicPath: undefined,
+    publicPath: process.env.NODE_ENV === 'production'
+        ? 'cartes/foretaura'
+        : '/',
     outputDir: undefined,
-    assetsDir: undefined,
+    assetsDir: 'assets',
     runtimeCompiler: undefined,
     productionSourceMap: false,
     parallel: undefined,

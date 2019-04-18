@@ -12,12 +12,15 @@
                 <b-navbar-nav class="ml-auto">
                     <b-nav-form>
                         <b-input-group>
-                            <b-form-select v-model="selected" v-on:change="select()" :options="options" placeholder="Département"></b-form-select>
+                            <b-form-select v-model="selected" v-on:change="select()" :options="options"
+                                           placeholder="Département"></b-form-select>
                         </b-input-group>
                     </b-nav-form>
                     <b-nav-item v-b-modal.about-modal>A propos</b-nav-item>
                     <!-- Modal Component -->
-                    <b-modal id="about-modal" size="xl" scrollable title="A propos du projet">
+                    <b-modal id="about-modal" size="xl" scrollable title="A propos du projet"
+                             :header-bg-variant="info"
+                             :header-text-variant="light">
                         <about-project></about-project>
                     </b-modal>
                 </b-navbar-nav>
@@ -27,11 +30,11 @@
 </template>
 
 
-
 <script>
     import AboutProject from './AboutProject';
+
     export default {
-        name:'TobBar',
+        name: 'TobBar',
         components: {AboutProject},
         data() {
             return {
@@ -53,14 +56,14 @@
             }
         },
         methods: {
-            select(){
+            select() {
                 //if you want to send any data into server before redirection then you can do it here
                 if (this.selected == null) {
                     this.$router.push("/");
+                } else {
+                    this.$router.push({name: 'LocalMap', params: {dept: this.selected}});
                 }
-                else {
-                this.$router.push({ name: 'LocalMap', params: { dept: this.selected }});
-            }}
+            }
         }
     }
 </script>

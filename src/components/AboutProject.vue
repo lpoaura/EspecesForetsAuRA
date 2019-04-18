@@ -5,7 +5,8 @@
         <p>Cette action est réalisée dans le cadre du programme d'actions de la LPO en faveur de la
             biodiversité en Auvergne-Rhône-Alpes, piloté par la LPO Drôme et avec le soutien financier de la région
             Auvergne-Rhône-Alpes.</p>
-        <p align="center"><a href="http://www.auvergnerhonealpes.fr/"><img id="logo_region" src="@/assets/logo_region_aura.svg"></a>
+        <p align="center"><a href="http://www.auvergnerhonealpes.fr/"><img id="logo_region"
+                                                                           src="@/assets/logo_region_aura.svg"></a>
         </p>
         <h2>Rappel des objectifs</h2>
         <h3>Objectifs du plan d’actions Forêts des LPO de Auvergne-Rhône-Alpes</h3>
@@ -24,8 +25,7 @@
                 <li>Présence d’espèces patrimoniales</li>
                 <li>Exploitation forestière présente ou à venir (présence de Charte forestière territoriale...)</li>
             </ul>
-        </ul>
-        <p>Vulgarisation de ces cartes auprès des partenaires notamment forestiers</p>
+            <li>Vulgarisation de ces cartes auprès des partenaires notamment forestiers</li>
         </ul>
         <h2>Méthode</h2>
         <p>L’ensemble des données, localisées en milieux forestiers (habitats forestiers selon Corine Land

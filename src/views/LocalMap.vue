@@ -1,43 +1,78 @@
 <template>
-    <b-container fluid>
+    <b-container fluid class="paddingless">
         <b-row id="bloc">
+            <div v-if="loading" class="loader"></div>
             <b-col cols="8" class="map">
                 <l-map id="map" :zoom="zoom" :center="center" :bounds="bounds">
                     <l-tile-layer :url="url" :attribution="attribution"/>
+                    <l-control-layers
+                            :collapse="false"
+                    />
                     <l-geo-json v-if="show" :geojson="geojsonDept" :options="options"
                                 :options-style="styleDeptFunction"/>
                     <l-geo-json v-if="show" :geojson="geojsonDatas" :options="options"
-                                :options-style="doStyleforetsynthesenbsp"/>
+                                :options-style="styleForetSyntheseNbsp"/>
+                    <l-wms-tile-layer
+                            v-for="layer in layers"
+                            :key="layer.name"
+                            :base-url="baseWmsUrl"
+                            :layers="layer.layers"
+                            :visible="layer.visible"
+                            :transparent="layer.transparent"
+                            :opacity="layer.opacity"
+                            :name="layer.name"
+                            layer-type="overlay"/>
                 </l-map>
+
             </b-col>
             <b-col cols="4" class="datas">
                 <div v-if="featureProps">
                     <h1>Données</h1>
+                    <span>Entre parenthèse les espèces non observées mais dont la présence reste possible au regard de contexte du territoire</span>
                     <div v-if="featureProps.nb_data">
                         <h4>{{featureProps.nb_data}} <span v-if="featureProps.nb_data == 1">donnée</span><span v-else>données</span>
                             d'espèce forestière</h4></div>
-                    <div v-if="featureProps.nb_sp"><h4>Nombre d'espèces observées</h4>
-                        <p>{{featureProps.nb_sp}}</p></div>
-                    <div v-if="featureProps.list_chiro"><h4>Chauves-souris</h4>
+                    <div v-if="featureProps.nb_sp">
+                        <h4>{{featureProps.nb_sp}} <span v-if="featureProps.nb_sp == 1">espèce forestière à enjeu observée</span><span
+                                v-else>espèces forestières à enjeux observées</span></h4></div>
+                    <div v-if="featureProps.list_chiro"><h4>Chauves-souris <b-badge pill :to="{ path: '/assets/docs/Preconisations_de_gestion_chat_forestier.pdf'}" target="_blank" variant="info">Fiche</b-badge></h4>
                         <p>{{featureProps.list_chiro}}</p></div>
-                    <div v-if="featureProps.nb_data"><h4>Nombre de données</h4>
-                        <p>{{featureProps.nb_data}}</p></div>
-                    <div v-if="featureProps.nb_data"><h4>Nombre de données</h4>
-                        <p>{{featureProps.nb_data}}</p></div>
+                    <div v-if="featureProps.pres_chatforest"><h4>Chat forestier <b-badge pill :to="{ path: '/assets/docs/Preconisations_de_gestion_chat_forestier.pdf'}" target="_blank" variant="info">Fiche</b-badge></h4>
+                        <p>{{featureProps.pres_chatforest}}</p></div>
+                    <div v-if="featureProps.pres_castor"><h4>Castor d'Europe <b-badge pill :to="{ path: '/assets/docs/Preconisations_de_gestion_chat_forestier.pdf'}" target="_blank"  variant="info">Fiche</b-badge></h4>
+                        <p>{{featureProps.pres_castor}}</p></div>
+                    <div v-if="featureProps.list_amphib"><h4>Amphibiens <b-badge pill href="#" variant="info">Fiche</b-badge></h4>
+                        <p>{{featureProps.list_amphib}}</p></div>
+                    <div v-if="featureProps.list_rap_ard"><h4>Rapaces & Ardéidés <b-badge pill href="#" variant="info">Fiche</b-badge></h4>
+                        <p>{{featureProps.list_rap_ard}}</p></div>
+                    <div v-if="featureProps.list_tetrao"><h4>Tétraonidés <b-badge pill href="#" variant="info">Fiche</b-badge></h4>
+                        <p>{{featureProps.list_tetrao}}</p></div>
+                    <div v-if="featureProps.list_pics"><h4>Pics <b-badge pill href="#" variant="info">Fiche</b-badge></h4>
+                        <p>{{featureProps.list_pics}}</p></div>
+                    <div v-if="featureProps.list_chouettes"><h4>Chouettes <b-badge pill href="#" variant="info">Fiche</b-badge></h4>
+                        <p>{{featureProps.list_chouettes}}</p></div>
+                    <div v-if="featureProps.list_esp_vieil_foret"><h4>Espèces de vieilles forêts <b-badge pill href="#" variant="info">Fiche</b-badge></h4>
+                        <p>{{featureProps.list_esp_vieil_foret}}</p></div>
+                    <div v-if="featureProps.list_esp_semi_ouv"><h4>Espèces de milieux semi-ouverts <b-badge pill href="#" variant="info">Fiche</b-badge></h4>
+                        <p>{{featureProps.list_esp_semi_ouv}}</p></div>
+                    <div v-if="featureProps.list_prebois"><h4>Espèces de prébois <b-badge pill href="#" variant="info">Fiche</b-badge></h4>
+                        <p>{{featureProps.list_prebois}}</p></div>
                 </div>
-                <div v-else> cliquez sur la carte</div>
+                <div v-else>
+                    <h1>Cliquez sur la carte</h1>
+                </div>
+
+
             </b-col>
         </b-row>
-
     </b-container>
     </div>
 </template>
 
 <script>
     // TODO : VOIR https://router.vuejs.org/guide/advanced/data-fetching.html#fetching-after-navigation/**/
-    import {LGeoJson, LMap, LTileLayer} from "vue2-leaflet";
+    import {LControlLayers, LGeoJson, LMap, LTileLayer, LWMSTileLayer} from "vue2-leaflet";
     import axios from "axios";
-    import Autolinker from "autolinker";
 
 
     export default {
@@ -46,13 +81,16 @@
             LMap,
             LTileLayer,
             LGeoJson,
-            Autolinker
+            'l-wms-tile-layer': LWMSTileLayer,
+            LControlLayers
         },
         data() {
             return {
                 loading: false,
+                baseUrl: process.env.BASE_URL,
                 show: true,
                 enableTooltip: true,
+                baseWmsUrl: 'http://wxs.ign.fr/corinelandcover/geoportail/r/wms?service=WMS&request=GetCapabilities',
                 dept: null,
                 zoom: 6,
                 center: [48, -1.219482],
@@ -69,7 +107,32 @@
                 fillColor: "blue",
                 url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
                 attribution:
-                    '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                    '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+                tileProviders: [
+                    {
+                        name: 'OpenStreetMap',
+                        visible: true,
+                        attribution: '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+                        url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+                    },
+                    {
+                        name: 'OpenTopoMap',
+                        visible: false,
+                        url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
+                        attribution: 'Map data: &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+                    }
+                ],
+                layers: [
+                    {
+                        name: 'Occupation du sol',
+                        visible: false,
+                        layers: 'LANDCOVER.CLC12_FR',
+                        format: 'image/png',
+                        transparent: true,
+                        attribution: '<a href="http://www.statistiques.developpement-durable.gouv.fr">SOeS CLC12</a>',
+                        opacity: 0.5,
+                    }
+                ]
             }
         },
         methods: {
@@ -86,7 +149,6 @@
                     .then(response => {
                         this.geojsonDept = response.data;
                         console.log("DEPT", response.data);
-                        this.loading = false;
                         this.bounds = L.geoJSON(this.geojsonDept).getBounds();
                     })
                     .catch(function (error) {
@@ -132,20 +194,7 @@
                     };
                 };
             },
-            styleDataFunction() {
-                const fillColor = this.fillColor;
-                const self = this;// important! need touch fillColor in computed for re-calculate when change fillColor
-                return () => {
-                    return {
-                        weight: 1,
-                        color: "white",
-                        opacity: 1,
-                        fillColor: fillColor,
-                        fillOpacity: 0.1
-                    };
-                };
-            },
-            doStyleforetsynthesenbsp() {
+            styleForetSyntheseNbsp() {
                 return (feature, layer) => {
                     const weight = 0.5;
                     const linecolor = 'white';
@@ -286,4 +335,29 @@
 
     }
 
+    .loader {
+        border: 5px solid white; /* Light grey */
+        border-top: 5px solid #3498db; /* Blue */
+        border-radius: 50%;
+        position: absolute !important;
+        left: 50%;
+        top: 50%;
+        width: 120px;
+        height: 120px;
+        animation: spin 2s linear infinite;
+        z-index: 999;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .paddingless {
+        padding: 0;
+    }
 </style>
