@@ -5,7 +5,7 @@
             <l-popup :content="text"></l-popup>
         </l-marker>
         <l-geo-json :geojson="geojson"/>
-        <l-control class="logo_region" :position="bottomleft">
+        <l-control class="logo_region">
             <img src="@/assets/logo_region_aura.svg">
         </l-control>
     </l-map>

@@ -1,10 +1,33 @@
+html,
+body {
+  height: 100vh;
+}
 .navbar{
   border-bottom: 1px solid teal;
   min-height: 80px;
 }
 
-/*
-.map {
-  width: 100%;
-  height: calc(100% - 60px);
-}*/
+/* scroll bar theming */
+
+/* firefox */
+
+* {
+  scrollbar-color: var(--primary) var(--light);
+}
+
+/* blink scroll bar custom design */
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  width: 10px;
+  border: 1px solid #eee;
+  margin: 5px;
+}
+
+::-webkit-scrollbar {
+  background: #eee;
+  width: 10px;
+  height: 10px;
+  margin: 5px;
+  cursor: pointer;
+}

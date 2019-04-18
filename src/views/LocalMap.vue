@@ -1,17 +1,31 @@
 <template>
-    <b-container fluid id="bloc">
-        <b-row>
-            <b-col cols="4">
-                <h1>Données</h1>
-                <p><b>Nombre de données</b> {{nb_data}}</p>
-                <p><b>Nombre d'espèces</b> {{nb_sp}}</p>
-                <p><b>Chiros</b> {{chiro}}</p>
-            </b-col>
+    <b-container fluid>
+        <b-row id="bloc">
             <b-col cols="8" class="map">
                 <l-map id="map" :zoom="zoom" :center="center" :bounds="bounds">
                     <l-tile-layer :url="url" :attribution="attribution"/>
-                    <l-geo-json v-if="show" :geojson="geojson" :options="options" :options-style="styleFunction"/>
+                    <l-geo-json v-if="show" :geojson="geojsonDept" :options="options"
+                                :options-style="styleDeptFunction"/>
+                    <l-geo-json v-if="show" :geojson="geojsonDatas" :options="options"
+                                :options-style="doStyleforetsynthesenbsp"/>
                 </l-map>
+            </b-col>
+            <b-col cols="4" class="datas">
+                <div v-if="featureProps">
+                    <h1>Données</h1>
+                    <div v-if="featureProps.nb_data">
+                        <h4>{{featureProps.nb_data}} <span v-if="featureProps.nb_data == 1">donnée</span><span v-else>données</span>
+                            d'espèce forestière</h4></div>
+                    <div v-if="featureProps.nb_sp"><h4>Nombre d'espèces observées</h4>
+                        <p>{{featureProps.nb_sp}}</p></div>
+                    <div v-if="featureProps.list_chiro"><h4>Chauves-souris</h4>
+                        <p>{{featureProps.list_chiro}}</p></div>
+                    <div v-if="featureProps.nb_data"><h4>Nombre de données</h4>
+                        <p>{{featureProps.nb_data}}</p></div>
+                    <div v-if="featureProps.nb_data"><h4>Nombre de données</h4>
+                        <p>{{featureProps.nb_data}}</p></div>
+                </div>
+                <div v-else> cliquez sur la carte</div>
             </b-col>
         </b-row>
 
@@ -20,6 +34,7 @@
 </template>
 
 <script>
+    // TODO : VOIR https://router.vuejs.org/guide/advanced/data-fetching.html#fetching-after-navigation/**/
     import {LGeoJson, LMap, LTileLayer} from "vue2-leaflet";
     import axios from "axios";
     import Autolinker from "autolinker";
@@ -44,7 +59,10 @@
                 chiro: null,
                 nb_data: null,
                 nb_sp: null,
-                geojson: null,
+                geojsonDatas: null,
+                geojsonDept: null,
+                featureData: null,
+                featureProps: null,
                 bounds: null,
                 featureUpdates: null,
                 fillColor: "blue",
@@ -53,17 +71,35 @@
                     '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             }
         },
+        watch: {
+            popupName: function() {
+                this.$router.push(`/${this.popupName}`)
+            }
+        },
         computed: {
             options() {
                 return {
                     onEachFeature: this.onEachFeatureFunction
                 };
             },
-            styleFunction() {
+            styleDeptFunction() {
                 const fillColor = this.fillColor; // important! need touch fillColor in computed for re-calculate when change fillColor
                 return () => {
                     return {
                         weight: 2,
+                        color: "cadetblue",
+                        opacity: 1,
+                        fillColor: fillColor,
+                        fillOpacity: 0
+                    };
+                };
+            },
+            styleDataFunction() {
+                const fillColor = this.fillColor;
+                const self = this;// important! need touch fillColor in computed for re-calculate when change fillColor
+                return () => {
+                    return {
+                        weight: 1,
                         color: "white",
                         opacity: 1,
                         fillColor: fillColor,
@@ -71,6 +107,84 @@
                     };
                 };
             },
+            doStyleforetsynthesenbsp() {
+                return (feature, layer) => {
+                    const weight = 0.5;
+                    const linecolor = 'white';
+                    const opacity = 0.5;
+                    if (feature.properties.nb_sp >= 0.0 &&
+                        feature.properties.nb_sp <= 0.0) {
+
+                        return {
+                            color: linecolor,
+                            weight: weight,
+                            opacity: opacity,
+                            dashArray: '',
+                            lineCap: 'butt',
+                            lineJoin: 'miter',
+                            fillColor: '#b172ba',
+
+                            fillOpacity: '0.0',
+                        }
+                    }
+                    if (feature.properties.nb_sp >= 0.0 &&
+                        feature.properties.nb_sp <= 5.0) {
+
+                        return {
+                            color: linecolor,
+                            weight: weight,
+                            opacity: opacity,
+                            dashArray: '',
+                            lineCap: 'butt',
+                            lineJoin: 'miter',
+                            fillColor: '#ffffb2',
+                            fillOpacity: '0.701960784314',
+                        }
+                    }
+                    if (feature.properties.nb_sp >= 5.0 &&
+                        feature.properties.nb_sp <= 10.0) {
+
+                        return {
+                            color: linecolor,
+                            weight: weight,
+                            opacity: opacity,
+                            dashArray: '',
+                            lineCap: 'butt',
+                            lineJoin: 'miter',
+                            fillColor: '#feb751',
+                            fillOpacity: '0.749019607843',
+                        }
+                    }
+                    if (feature.properties.nb_sp >= 10.0 &&
+                        feature.properties.nb_sp <= 15.0) {
+
+                        return {
+                            color: linecolor,
+                            weight: weight,
+                            opacity: opacity,
+                            dashArray: '',
+                            lineCap: 'butt',
+                            lineJoin: 'miter',
+                            fillColor: '#f55629',
+                            fillOpacity: '0.8',
+                        }
+                    }
+                    if (feature.properties.nb_sp >= 15.0) {
+
+                        return {
+                            color: linecolor,
+                            weight: weight,
+                            opacity: opacity,
+                            dashArray: '',
+                            lineCap: 'butt',
+                            lineJoin: 'miter',
+                            fillColor: '#bd0026',
+                            fillOpacity: '0.9',
+                        }
+                    }
+                }
+            },
+
             onEachFeatureFunction() {
                 if (!this.enableTooltip) {
                     return () => {
@@ -80,9 +194,9 @@
                     var self = this;
                     layer.on('click', function (e) {
                         self.displayData = true;
-                        self.chiro = feature.properties.list_chiro;
-                        self.nb_sp = feature.properties.nb_sp
-                    })
+                        self.featureProps = feature.properties;
+                    });
+
                 }
             }
             /*onEachFeatureFunction() {
@@ -95,8 +209,8 @@
                         '<h3 class="bluetxt" align="center">Synthèse de la maille</h3><br /><strong class="orangetxt">Nombre de données : </strong>' +
                         (feature.properties['nb_data'] ? Autolinker.link(String(feature.properties[
                             'nb_data'])) : 'Aucune') +
-                        '<br/><strong class="orangetxt">Nombre d\'espèces à enjeux : </strong>' + (feature.properties['nb_sp'] !==
-                        null ? Autolinker.link(String(feature.properties['nb_sp'])) : 'Aucune') +
+                        '<br/><strong class="orangetxt">Nombre d\'espèces à enjeux : </strong>' + (feature.properties.nb_sp !==
+                        null ? Autolinker.link(String(feature.properties.nb_sp)) : 'Aucune') +
                         '<br/><a href="docs/Preconisations_de_gestion_chiropteres.pdf" class="button tiny" target="_blank"><i class="fi-page-pdf"></i>&nbsp;Chauves-souris</a>&nbsp;' +
                         (feature.properties['list_chiro'] ? Autolinker.link(String(
                             feature.properties['list_chiro'])) : '<i class="greytxt">Absence de données</i>') +
@@ -150,19 +264,38 @@
             this.loading = true;
             axios
                 .get(
+                    "https://data.fauneauvergnerhonealpes.org/getdatas/getData.php?geotable=webgis.departements_aura&geomfield=geom&fields=code_dept,nom_dept&parameters=code_dept+ilike+%27" +
+                    this.$route.params.dept +
+                    "%27",
+                    {crossdomain: true}
+                )
+                .then(response => {
+                    this.geojsonDept = response.data;
+                    console.log("DEPT", response.data);
+                    this.loading = false;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            axios
+                .get(
                     "https://data.fauneauvergnerhonealpes.org/getdatas/getData.php?geotable=webgis.draaf_esp_foret&geomfield=geom&fields=nb_data,nb_sp,pres_castor,list_chiro,pres_chatforest,list_amphib,list_rap_ard,list_tetrao,list_pics,list_esp_vieil_foret,list_esp_semi_ouv,list_chouettes,list_prebois&parameters=dept+ilike+%27" +
                     this.$route.params.dept +
                     "%27",
                     {crossdomain: true}
                 )
                 .then(response => {
-                    this.geojson = response.data;
+                    this.geojsonDatas = response.data;
                     console.log("DATAS", response.data);
                     this.loading = false;
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
+        },
+        beforeRouteUpdate (to, from, next) {
+            console.log('beforeRouteUpdate TO', to.params.dept);
+            next({ name: 'LocalMap', params: { dept: to.params.dept }})
         }
     };
 </script>
@@ -172,165 +305,36 @@
     #bloc {
         margin: 0;
         padding: 0;
-        height: 100%
+        min-height: inherit;
+        height: calc(100vh - 80px);
     }
 
     #map {
-        height: calc(100% - 80px);
         width: 100%;
         position: absolute !important;
-    }
-
-    .logo_region {
-        background: #fff;
-        height: 100px;
-        padding: 0 0.5em;
-        border: 1px solid #aaa;
-        border-radius: 0.1em;
-    }
-
-    img {
-        height: 80px;
-    }
-
-    .spinner {
-        position: fixed;
-        z-index: 99; /* make higher than whatever is on the page */
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        margin: auto;
-        background: red;
-        width: 100px;
-        height: 100px;
-    }
-
-    strong.bluetxt {
-        color: #1779ba;
-        /*line-height: normal !important;*/
-    }
-
-    .orangetxt {
-        color: #FF9933;
-    }
-
-    .label {
-        font: 10px/1.25 "Helvetica Neue", Arial, Helvetica, sans-serif;
-        /*line-height: normal;*/
-    }
-
-    h2 {
-        margin: 0 0 5px;
-        color: #1779ba;
-        font-size: 1.5rem;
-    }
-
-    h3 {
-        margin: 0 0 0px;
-        color: #1779ba;
-        font-size: 1rem;
-    }
-
-    /*.a hover {
-      background-color: yellow;
-    }*/
-    .button.tiny {
-        border-radius: 2px;
-        background: #1779ba;
-        box-shadow: none;
-        text-decoration: none;
-        border-width: 1px;
-        border-color: #1779ba;
-        padding-top: 1px;
-        padding-bottom: 1px;
-        padding-left: 2px;
-        padding-right: 2px;
-        margin-top: 2px;
-        margin-bottom: 2px;
-        font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
-        color: white;
-    }
-
-
-    .button.tiny:hover {
-        border-radius: 2px;
-        box-shadow: none;
-        text-decoration: none;
-        border-style: solid;
-        text-decoration: none;
-        border-width: 1px;
-        border-color: #1779ba;
-        background-color: white;
-        padding-top: 1px;
-        padding-bottom: 1px;
-        padding-left: 2px;
-        padding-right: 2px;
-        margin-top: 2px;
-        margin-bottom: 2px;
-        font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
-        color: #1779ba;
-    }
-
-    .button {
-        border-radius: 10px;
-        background: #1779ba;
-        box-shadow: none;
-        border-style: solid;
-        text-decoration: none;
-        border-width: 1px;
-        border-color: #1779ba;
-        padding-top: 1px;
-        padding-bottom: 1px;
-        padding-left: 5px;
-        padding-right: 5px;
-        margin-top: 2px;
-        margin-bottom: 2px;
-        color: white;
-        font-size: 1.5rem;
-    }
-
-    a.button {
-        color: white
-    }
-
-    .button:hover {
-        border-radius: 10px;
-        box-shadow: none;
-        border-style: solid;
-        text-decoration: none;
-        border-width: 1px;
-        border-color: #1779ba;
-        background-color: white;
-        padding-top: 1px;
-        padding-bottom: 1px;
-        padding-left: 5px;
-        padding-right: 5px;
-        margin-top: 2px;
-        margin-bottom: 2px;
-        color: #1779ba;
-        font-size: 1.5rem;
-    }
-
-    .leaflet-popup a {
-        color: white;
-    }
-
-    i.greytxt {
-        color: #aaa;
+        min-height: inherit;
+        height: 100%;
     }
 
     .datas {
         border-left: 1px solid teal;
         width: 100%;
+        padding: 20px;
+        min-height: inherit;
+        min-width: inherit;
+        height: 100%;
         position: relative;
-        background: white;
+        text-align: left;
     }
 
     .map {
-        height: 800px;
         width: 100%;
+        height: 100%;
+        padding: 0;
+        min-height: inherit;
+        min-width: inherit;
         position: inherited;
+
     }
 
 </style>
