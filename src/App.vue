@@ -7,11 +7,10 @@
 </template>
 <script>
     import TopBar from './components/TopBar'
-    import Footer from './components/Footer/Footer'
 
     export default {
         name: 'App',
-        components: {TopBar, Footer}
+        components: {TopBar}
     }
 </script>
 

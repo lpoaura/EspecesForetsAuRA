@@ -56,6 +56,7 @@ export default {
         { value: "38", text: "Isère" },
         { value: "42", text: "Loire" },
         { value: "43", text: "Haute-Loire" },
+        { value: "63", text: "Puy-de-Dôme" },
         { value: "69", text: "Rhône" },
         { value: "73", text: "Savoie" },
         { value: "74", text: "Haute-Savoie" }
