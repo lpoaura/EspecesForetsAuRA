@@ -2,14 +2,16 @@
     <div id="app">
         <top-bar></top-bar>
         <router-view/>
+        <footer></footer>
     </div>
 </template>
 <script>
     import TopBar from './components/TopBar'
+    import Footer from './components/Footer/Footer'
 
     export default {
         name: 'App',
-        components: {TopBar}
+        components: {TopBar, Footer}
     }
 </script>
 

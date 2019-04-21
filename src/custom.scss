@@ -1,45 +1,53 @@
 @font-face {
-  font-family: "Abel";
-  src: url("./assets/abel-regular.ttf");
+    font-family: "Abel";
+    src: url("./assets/abel-regular.ttf");
 }
 
 html,
 body {
-  height: 100vh;
-  font-family: "Abel", Arial, Helvetica, sans-serif;
+    height: 100vh;
+    font-family: "Abel", Arial, Helvetica, sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  color: teal;
-  font-family: "Abel", Arial, Helvetica, sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #1779ba;
+    font-family: "Abel", Arial, Helvetica, sans-serif;
 }
 
-.navbar{
-  border-bottom: 1px solid teal;
-  min-height: 80px;
+.navbar {
+    border-bottom: 1px solid teal;
+    min-height: 80px;
 }
+
 
 /* scroll bar theming */
+
 
 /* firefox */
 
 * {
-  scrollbar-color: var(--primary) var(--light);
+    scrollbar-color: #1779ba var(--light);
 }
+
 
 /* blink scroll bar custom design */
 
 ::-webkit-scrollbar-thumb {
-  background: var(--primary);
-  width: 10px;
-  border: 1px solid #eee;
-  margin: 5px;
+    background: #1779ba;
+    width: 10px;
+    border: 1px solid #eee;
+    margin: 5px;
 }
 
 ::-webkit-scrollbar {
-  background: #eee;
-  width: 10px;
-  height: 10px;
-  margin: 5px;
-  cursor: pointer;
+    background: #eee;
+    width: 10px;
+    height: 10px;
+    margin: 5px;
+    cursor: pointer;
 }

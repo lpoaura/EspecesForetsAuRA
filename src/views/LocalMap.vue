@@ -1,17 +1,29 @@
-<template>
+<template xmlns="http://www.w3.org/1999/html">
     <b-container fluid class="paddingless">
         <b-row id="bloc">
-            <div v-if="loading" class="loader"></div>
             <b-col cols="8" class="map">
-                <l-map id="map" :zoom="zoom" :center="center" :bounds="bounds">
-                    <l-tile-layer :url="url" :attribution="attribution"/>
+                <div v-if="loading" class="loader">
+                </div>
+
+                <l-map id="map" :zoom="zoom" :center="center" :bounds="bounds" :maxBounds="bounds">
+                    <l-tile-layer :url="tileLayer.url" :attribution="tileLayer.attribution"
+                                  :opacity="tileLayer.opacity"/>
                     <l-control-layers
-                            :collapse="false"
+                            :collapsed="false"
                     />
-                    <l-geo-json v-if="show" :geojson="geojsonDept" :options="options"
-                                :options-style="styleDeptFunction"/>
-                    <l-geo-json v-if="show" :geojson="geojsonDatas" :options="options"
-                                :options-style="styleForetSyntheseNbsp"/>
+                    <l-control :collapsed="true" class="legend" :position="legendPosition">
+                        <h6>Nb d'espèces à enjeux</h6>
+                        <div v-for="item in legendItems">
+                            <canvas width="10" height="10"
+                                    v-bind:style="{backgroundColor: item.color}"></canvas>
+                            {{ item.label }}
+                            <br>
+                        </div>
+                    </l-control>
+                    <l-geo-json v-if="showDept" :geojson="geojsonDept" :options="options"
+                                :optionsStyle="styleDept"/>
+                    <l-geo-json v-if="showDatas" :geojson="geojsonDatas" :options="options"
+                                :optionsStyle="styleDataNbsp"/>
                     <l-wms-tile-layer
                             v-for="layer in layers"
                             :key="layer.name"
@@ -35,27 +47,66 @@
                     <div v-if="featureProps.nb_sp">
                         <h4>{{featureProps.nb_sp}} <span v-if="featureProps.nb_sp == 1">espèce forestière à enjeu observée</span><span
                                 v-else>espèces forestières à enjeux observées</span></h4></div>
-                    <div v-if="featureProps.list_chiro"><h4>Chauves-souris <b-badge pill :to="{ path: '/assets/docs/Preconisations_de_gestion_chat_forestier.pdf'}" target="_blank" variant="info">Fiche</b-badge></h4>
+                    <div v-if="featureProps.list_chiro">
+                        <h4>Chauves-souris
+                            <b-badge pill :to="{ path: '/assets/docs/Preconisations_de_gestion_chat_forestier.pdf'}"
+                                     target="_blank" variant="info">Fiche
+                            </b-badge>
+                        </h4>
                         <p>{{featureProps.list_chiro}}</p></div>
-                    <div v-if="featureProps.pres_chatforest"><h4>Chat forestier <b-badge pill :to="{ path: '/assets/docs/Preconisations_de_gestion_chat_forestier.pdf'}" target="_blank" variant="info">Fiche</b-badge></h4>
+                    <div v-if="featureProps.pres_chatforest">
+                        <h4>Chat forestier
+                            <b-badge pill :to="{ path: '/assets/docs/Preconisations_de_gestion_chat_forestier.pdf'}"
+                                     target="_blank" variant="info">Fiche
+                            </b-badge>
+                        </h4>
                         <p>{{featureProps.pres_chatforest}}</p></div>
-                    <div v-if="featureProps.pres_castor"><h4>Castor d'Europe <b-badge pill :to="{ path: '/assets/docs/Preconisations_de_gestion_chat_forestier.pdf'}" target="_blank"  variant="info">Fiche</b-badge></h4>
+                    <div v-if="featureProps.pres_castor">
+                        <h4>Castor d'Europe
+                            <b-badge pill :to="{ path: '/assets/docs/Preconisations_de_gestion_chat_forestier.pdf'}"
+                                     target="_blank" variant="info">Fiche
+                            </b-badge>
+                        </h4>
                         <p>{{featureProps.pres_castor}}</p></div>
-                    <div v-if="featureProps.list_amphib"><h4>Amphibiens <b-badge pill href="#" variant="info">Fiche</b-badge></h4>
+                    <div v-if="featureProps.list_amphib">
+                        <h4>Amphibiens
+                            <b-badge pill href="#" variant="info">Fiche</b-badge>
+                        </h4>
                         <p>{{featureProps.list_amphib}}</p></div>
-                    <div v-if="featureProps.list_rap_ard"><h4>Rapaces & Ardéidés <b-badge pill href="#" variant="info">Fiche</b-badge></h4>
+                    <div v-if="featureProps.list_rap_ard">
+                        <h4>Rapaces & Ardéidés
+                            <b-badge pill href="#" variant="info">Fiche</b-badge>
+                        </h4>
                         <p>{{featureProps.list_rap_ard}}</p></div>
-                    <div v-if="featureProps.list_tetrao"><h4>Tétraonidés <b-badge pill href="#" variant="info">Fiche</b-badge></h4>
+                    <div v-if="featureProps.list_tetrao">
+                        <h4>Tétraonidés
+                            <b-badge pill href="#" variant="info">Fiche</b-badge>
+                        </h4>
                         <p>{{featureProps.list_tetrao}}</p></div>
-                    <div v-if="featureProps.list_pics"><h4>Pics <b-badge pill href="#" variant="info">Fiche</b-badge></h4>
+                    <div v-if="featureProps.list_pics">
+                        <h4>Pics
+                            <b-badge pill href="#" variant="info">Fiche</b-badge>
+                        </h4>
                         <p>{{featureProps.list_pics}}</p></div>
-                    <div v-if="featureProps.list_chouettes"><h4>Chouettes <b-badge pill href="#" variant="info">Fiche</b-badge></h4>
+                    <div v-if="featureProps.list_chouettes">
+                        <h4>Chouettes
+                            <b-badge pill href="#" variant="info">Fiche</b-badge>
+                        </h4>
                         <p>{{featureProps.list_chouettes}}</p></div>
-                    <div v-if="featureProps.list_esp_vieil_foret"><h4>Espèces de vieilles forêts <b-badge pill href="#" variant="info">Fiche</b-badge></h4>
+                    <div v-if="featureProps.list_esp_vieil_foret">
+                        <h4>Espèces de vieilles forêts
+                            <b-badge pill href="#" variant="info">Fiche</b-badge>
+                        </h4>
                         <p>{{featureProps.list_esp_vieil_foret}}</p></div>
-                    <div v-if="featureProps.list_esp_semi_ouv"><h4>Espèces de milieux semi-ouverts <b-badge pill href="#" variant="info">Fiche</b-badge></h4>
+                    <div v-if="featureProps.list_esp_semi_ouv">
+                        <h4>Espèces de milieux semi-ouverts
+                            <b-badge pill href="#" variant="info">Fiche</b-badge>
+                        </h4>
                         <p>{{featureProps.list_esp_semi_ouv}}</p></div>
-                    <div v-if="featureProps.list_prebois"><h4>Espèces de prébois <b-badge pill href="#" variant="info">Fiche</b-badge></h4>
+                    <div v-if="featureProps.list_prebois">
+                        <h4>Espèces de prébois
+                            <b-badge pill href="#" variant="info">Fiche</b-badge>
+                        </h4>
                         <p>{{featureProps.list_prebois}}</p></div>
                 </div>
                 <div v-else>
@@ -71,7 +122,7 @@
 
 <script>
     // TODO : VOIR https://router.vuejs.org/guide/advanced/data-fetching.html#fetching-after-navigation/**/
-    import {LControlLayers, LGeoJson, LMap, LTileLayer, LWMSTileLayer} from "vue2-leaflet";
+    import {LControl, LControlLayers, LGeoJson, LMap, LTileLayer, LWMSTileLayer} from "vue2-leaflet";
     import axios from "axios";
 
 
@@ -81,6 +132,7 @@
             LMap,
             LTileLayer,
             LGeoJson,
+            LControl,
             'l-wms-tile-layer': LWMSTileLayer,
             LControlLayers
         },
@@ -88,16 +140,14 @@
             return {
                 loading: false,
                 baseUrl: process.env.BASE_URL,
-                show: true,
+                showDept: false,
+                showDatas: false,
                 enableTooltip: true,
                 baseWmsUrl: 'http://wxs.ign.fr/corinelandcover/geoportail/r/wms?service=WMS&request=GetCapabilities',
                 dept: null,
                 zoom: 6,
-                center: [48, -1.219482],
+                center: [45.51, 4.53],
                 displayData: false,
-                chiro: null,
-                nb_data: null,
-                nb_sp: null,
                 geojsonDatas: null,
                 geojsonDept: null,
                 featureData: null,
@@ -105,23 +155,11 @@
                 bounds: null,
                 featureUpdates: null,
                 fillColor: "blue",
-                url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
-                attribution:
-                    '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-                tileProviders: [
-                    {
-                        name: 'OpenStreetMap',
-                        visible: true,
-                        attribution: '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-                        url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-                    },
-                    {
-                        name: 'OpenTopoMap',
-                        visible: false,
-                        url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
-                        attribution: 'Map data: &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
-                    }
-                ],
+                tileLayer: {
+                    url: "https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png",
+                    attribution: '&copy; Openstreetmap France | &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                    opacity: 0.5
+                },
                 layers: [
                     {
                         name: 'Occupation du sol',
@@ -132,24 +170,33 @@
                         attribution: '<a href="http://www.statistiques.developpement-durable.gouv.fr">SOeS CLC12</a>',
                         opacity: 0.5,
                     }
+                ],
+                legendPosition: 'bottomright',
+                legendItems: [
+                    {"label": "Aucune espèce observée", "color": 'rgba(0,0,0,0)'},
+                    {"label": "De 1 à 4 espèces observées", "color": 'rgb(255, 255, 178, 0.75)'},
+                    {"label": "De 5 à 6 espèces observées", "color": 'rgba(254, 183, 81, 0.75)'},
+                    {"label": "De 7 à 8 espèces observées", "color": 'rgba(245, 86, 41, 0.75)'},
+                    {"label": "Plus de 9 espèces observées", "color": 'rgba(189, 0, 38, 0.9)'},
                 ]
             }
         },
         methods: {
             getDatas() {
                 this.loading = true;
+                this.showDept = false;
+                this.showDatas = false;
                 this.dept = this.$route.params.dept;
                 axios
                     .get(
                         "https://data.fauneauvergnerhonealpes.org/getdatas/getData.php?geotable=webgis.departements_aura&geomfield=geom&fields=code_dept,nom_dept&parameters=code_dept+ilike+%27" +
                         this.dept +
-                        "%27",
-                        {crossdomain: true}
+                        "%27"
                     )
                     .then(response => {
                         this.geojsonDept = response.data;
-                        console.log("DEPT", response.data);
                         this.bounds = L.geoJSON(this.geojsonDept).getBounds();
+                        this.showDept = true;
                     })
                     .catch(function (error) {
                         console.log(error);
@@ -158,13 +205,12 @@
                     .get(
                         "https://data.fauneauvergnerhonealpes.org/getdatas/getData.php?geotable=webgis.draaf_esp_foret&geomfield=geom&fields=nb_data,nb_sp,pres_castor,list_chiro,pres_chatforest,list_amphib,list_rap_ard,list_tetrao,list_pics,list_esp_vieil_foret,list_esp_semi_ouv,list_chouettes,list_prebois&parameters=dept+ilike+%27" +
                         this.dept +
-                        "%27",
-                        {crossdomain: true}
+                        "%27"
                     )
                     .then(response => {
                         this.geojsonDatas = response.data;
-                        console.log("DATAS", response.data);
                         this.loading = false;
+                        this.showDatas = true;
                     })
                     .catch(function (error) {
                         console.log(error);
@@ -182,23 +228,31 @@
                     onEachFeature: this.onEachFeatureFunction
                 };
             },
-            styleDeptFunction() {
+            nbSp(feature) {
+                if (feature.properties.nb_sp) {
+                    var nbSp = 'Données: ' + feature.properties.nb_sp
+                }
+                ;
+                return nbSp
+            },
+            styleDept() {
                 const fillColor = this.fillColor; // important! need touch fillColor in computed for re-calculate when change fillColor
                 return () => {
                     return {
-                        weight: 2,
-                        color: "cadetblue",
+                        weight: 3,
+                        color: "#1779ba",
                         opacity: 1,
                         fillColor: fillColor,
                         fillOpacity: 0
                     };
                 };
             },
-            styleForetSyntheseNbsp() {
-                return (feature, layer) => {
-                    const weight = 0.5;
-                    const linecolor = 'white';
-                    const opacity = 0.5;
+            styleDataNbsp() {
+                const weight = 0.5;
+                const linecolor = 'white';
+                const opacity = 0.8;
+                return (feature) => {
+
                     if (feature.properties.nb_sp >= 0.0 &&
                         feature.properties.nb_sp <= 0.0) {
 
@@ -209,13 +263,12 @@
                             dashArray: '',
                             lineCap: 'butt',
                             lineJoin: 'miter',
-                            fillColor: '#b172ba',
-
+                            fillColor: 'rgba(0,0,0,0)',
                             fillOpacity: '0.0',
                         }
                     }
                     if (feature.properties.nb_sp >= 0.0 &&
-                        feature.properties.nb_sp <= 5.0) {
+                        feature.properties.nb_sp < 4.0) {
 
                         return {
                             color: linecolor,
@@ -224,12 +277,12 @@
                             dashArray: '',
                             lineCap: 'butt',
                             lineJoin: 'miter',
-                            fillColor: '#ffffb2',
-                            fillOpacity: '0.701960784314',
+                            fillColor: 'rgb(255, 255, 178)',
+                            fillOpacity: '0.75',
                         }
                     }
-                    if (feature.properties.nb_sp >= 5.0 &&
-                        feature.properties.nb_sp <= 10.0) {
+                    if (feature.properties.nb_sp >= 4.0 &&
+                        feature.properties.nb_sp < 7.0) {
 
                         return {
                             color: linecolor,
@@ -238,13 +291,12 @@
                             dashArray: '',
                             lineCap: 'butt',
                             lineJoin: 'miter',
-                            fillColor: '#feb751',
-                            fillOpacity: '0.749019607843',
+                            fillColor: 'rgba(254, 183, 81)',
+                            fillOpacity: '0.75',
                         }
                     }
-                    if (feature.properties.nb_sp >= 10.0 &&
-                        feature.properties.nb_sp <= 15.0) {
-
+                    if (feature.properties.nb_sp >= 7.0 &&
+                        feature.properties.nb_sp < 9.0) {
                         return {
                             color: linecolor,
                             weight: weight,
@@ -252,12 +304,11 @@
                             dashArray: '',
                             lineCap: 'butt',
                             lineJoin: 'miter',
-                            fillColor: '#f55629',
+                            fillColor: 'rgba(245, 86, 41)',
                             fillOpacity: '0.8',
                         }
                     }
-                    if (feature.properties.nb_sp >= 15.0) {
-
+                    if (feature.properties.nb_sp >= 9.0) {
                         return {
                             color: linecolor,
                             weight: weight,
@@ -286,7 +337,8 @@
 
                 }
             }
-        },
+        }
+        ,
         created() {
             this.getDatas()
         }// },
@@ -295,7 +347,8 @@
         //     console.log('beforeRouteUpdate TO', to.params.dept);
         //     next()
         // }
-    };
+    }
+    ;
 </script>
 
 
@@ -342,6 +395,8 @@
         position: absolute !important;
         left: 50%;
         top: 50%;
+        margin-top: -60px;
+        margin-left: -60px;
         width: 120px;
         height: 120px;
         animation: spin 2s linear infinite;
@@ -359,5 +414,19 @@
 
     .paddingless {
         padding: 0;
+    }
+
+    .leaflet-container {
+        background-color: rgba(255, 0, 0, 0.0);
+    }
+
+    .legend {
+        background: #fff;
+        /*height: 200px;*/
+        padding: 0 0.5em;
+        border: 1px solid #aaa;
+        border-radius: 0.1em;
+        text-align: left;
+        line-height: normal;
     }
 </style>
