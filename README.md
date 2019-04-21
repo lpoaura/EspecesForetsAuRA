@@ -1,4 +1,8 @@
-# foretauravue
+# ForetAuraVue
+
+Site internet de présentation des espèces de vertébrés forestiers à enjeux en Auvergne Rhône-Alpes développé par la LPO Auvergne-Rhône-Alpes dans le cadre d'un programme mené avec le soutien financier de la région Auvergne-Rhône-Alpes/
+
+Site développé avec VueJS, Leaflet (vue2-leaflet) et BootStrap (bootstrap-vue.js).
 
 ## Project setup
 ```
