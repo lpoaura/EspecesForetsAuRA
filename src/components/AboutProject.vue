@@ -80,9 +80,9 @@
                                 <b-link href="https://vuejs.org/" target="_blank"><code>DataGrip</code></b-link>
                                 de l'éditeur JetBrains
                             </li>
-                            <li>La transformation des tables en flux web au format geojson est assurée par un script php
+                            <li>La transformation des tables <code>PostgreSQL/PostGIS</code> en flux web au format geojson est assurée par un script php
                                 dont le code source est
-                                <b-link href="" target="_blank">ici</b-link>
+                                <b-link href="https://framagit.org/fred.perso/getgeojsondatasfrompostgis/tree/master/getdatas" target="_blank">ici</b-link>
                             </li>
                         </ul>
                         <h4>Application web</h4>
