@@ -4,6 +4,10 @@ Site internet de présentation des espèces de vertébrés forestiers à enjeux 
 
 Site développé avec VueJS, Leaflet (vue2-leaflet) et BootStrap (bootstrap-vue.js).
 
+# Addresse de l'appli
+
+https://aura-partage.lpo.fr/cartes/foretaura
+
 ## Project setup
 ```
 npm install
