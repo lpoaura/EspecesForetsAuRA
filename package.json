@@ -7,7 +7,6 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "autolinker": "^3.0.5",
     "axios": "^0.18.0",
     "bootstrap-vue": "^2.0.0-rc.13",
     "core-js": "^2.6.5",

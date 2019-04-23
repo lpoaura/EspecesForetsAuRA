@@ -42,11 +42,19 @@ export default {
     LGeoJson,
     LControl
   },
-  metaInfo: {
-    // if no subcomponents specify a metaInfo.title, this title will be used
-    title: "Accueuil",
-    // all titles will be injected into this template
-    titleTemplate: "%s | Portail de synthèse des espèces de vertébrés forestiers à enjeux en Auvergne-Rhône-Alpes"
+  metaInfo() {
+    return {
+      title: "Accueil | Portail de synthèse des espèces de vertébrés forestiers à enjeux en Auvergne-Rhône-Alpes",
+    meta: [
+      { charset: 'utf-8' },
+      {
+        'property': 'og:title',
+        'content': 'Accueil',
+        'template': chunk => `${chunk} | Portail de synthèse des espèces de vertébrés forestiers à enjeux en Auvergne-Rhône-Alpes`, //or as string template: '%s - My page',
+        'vmid': 'og:title'
+      }
+    ]
+    }
   },
   data() {
     return {
@@ -73,7 +81,6 @@ export default {
         )
         .then(response => {
           this.geojsonDept = response.data;
-          console.log("DEPT", response.data);
           this.bounds = L.geoJSON(this.geojsonDept).getBounds();
         })
         .catch(function(error) {

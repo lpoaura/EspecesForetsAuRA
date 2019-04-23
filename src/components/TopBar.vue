@@ -3,7 +3,7 @@
     <b-navbar toggleable="lg">
       <b-navbar-brand href="#">
         <img id="logo" alt="Vue logo" src="@/assets/logo.png">
-        Espèce de vertébrés forestiers à enjeux
+        Espèce de vertébrés forestiers à enjeux <i v-if='deptName'>({{deptName}})</i>
       </b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -27,9 +27,6 @@
           </b-nav-form>
           <!-- Modal Component -->
           <about-project></about-project>
-
-
-          </b-modal>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -46,6 +43,7 @@ export default {
   data() {
     return {
       selected: null,
+      deptName: null,
       options: [
         { value: null, text: "Choisissez un département" },
         { value: "01", text: "Ain" },
@@ -75,6 +73,17 @@ export default {
         });
       }
     },
+    getDeptName() {
+      const dept = this.$route.params.dept;
+      if (dept) {
+        for (var i=0; i < this.options.length; i++) {
+          var option = this.options[i];
+          if (option.value == dept) {
+            this.deptName = option.text;
+          }
+        }
+      }
+    },
     getSelected() {
       const dept = this.$route.params.dept;
       console.log("TOPBAR DEPTS", dept);
@@ -87,6 +96,7 @@ export default {
   },
   watch: {
     "$route.params.dept"() {
+      this.getDeptName();
       this.getSelected();
     }
   }

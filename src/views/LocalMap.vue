@@ -59,7 +59,9 @@
           <div v-if="featureProps.nb_sp">
             <h4>
               {{featureProps.nb_sp}}
-              <span v-if="featureProps.nb_sp == 1">espèce forestière à enjeu observée</span>
+              <span
+                v-if="featureProps.nb_sp == 1"
+              >espèce forestière à enjeu observée</span>
               <span v-else>espèces forestières à enjeux observées</span>
             </h4>
           </div>
@@ -241,6 +243,7 @@ export default {
       displayData: false,
       geojsonDatas: null,
       geojsonDept: null,
+      nomDept: "Département",
       featureData: null,
       featureProps: null,
       bounds: null,
@@ -283,12 +286,21 @@ export default {
       ]
     };
   },
-  metaInfo: {
-    // if no subcomponents specify a metaInfo.title, this title will be used
-    title: "",
-    // all titles will be injected into this template
-    titleTemplate:
-      "Synthèse départementale %s | Portail de synthèse des espèces de vertébrés forestiers à enjeux en Auvergne-Rhône-Alpes"
+  metaInfo() {
+    return {
+      title: "Synthèse départementale (" +
+        this.nomDept +
+        ") | Portail de synthèse des espèces de vertébrés forestiers à enjeux en Auvergne-Rhône-Alpes",
+    // meta: [
+    //   { charset: 'utf-8' },
+    //   {
+    //     'property': 'og:title',
+    //     'content': 'Accueil',
+    //     'template': chunk => `${chunk} | Portail de synthèse des espèces de vertébrés forestiers à enjeux en Auvergne-Rhône-Alpes`, //or as string template: '%s - My page',
+    //     'vmid': 'og:title'
+    //   }
+    // ]
+    }
   },
   methods: {
     getDatas() {
@@ -320,6 +332,7 @@ export default {
           this.geojsonDatas = response.data;
           this.loading = false;
           this.showDatas = true;
+          this.nomDept = this.geojsonDept['features'][0]['properties']['nom_dept'];
         })
         .catch(function(error) {
           console.log(error);
