@@ -1,9 +1,9 @@
 <template>
-    <b-modal id="about-modal" ok-variant="danger" ok-title="Fermer" ok-only size="xl" scrollable
+    <b-modal id="about-modal" ok-only ok-title="Fermer" ok-variant="danger" scrollable size="xl"
              title="A propos du projet">
         <div id="modal-content">
             <b-tabs content-class="mt-3">
-                <b-tab title="Le projet" active>
+                <b-tab active title="Le projet">
                     <h2>Valorisation des connaissances sur les espèces forestières et forêts patrimoniales pour une
                         meilleure prise en compte dans la gestion forestière</h2>
                     <p>Cette action est réalisée dans le cadre du programme d'actions de la LPO en faveur de la
@@ -74,15 +74,21 @@
                         <h4>Préparation et diffusion des données</h4>
                         <ul>
                             <li>Un serveur de bases de données
-                                <b-link><code href="https://vuejs.org/" target="_blank">PostgreSQL</code></b-link> et son extension spatiale <b-link><code>PostGIS</code></b-link></b-link>
+                                <b-link><code href="https://vuejs.org/" target="_blank">PostgreSQL</code></b-link>
+                                et son extension spatiale
+                                <b-link><code>PostGIS</code></b-link>
+                                </b-link>
                             </li>
                             <li>Le client SQL
                                 <b-link href="https://vuejs.org/" target="_blank"><code>DataGrip</code></b-link>
                                 de l'éditeur JetBrains
                             </li>
-                            <li>La transformation des tables <code>PostgreSQL/PostGIS</code> en flux web au format geojson est assurée par un script php
+                            <li>La transformation des tables <code>PostgreSQL/PostGIS</code> en flux web au format
+                                geojson est assurée par un script php
                                 dont le code source est
-                                <b-link href="https://framagit.org/fred.perso/getgeojsondatasfrompostgis/tree/master/getdatas" target="_blank">ici</b-link>
+                                <b-link href="https://framagit.org/fred.perso/getgeojsondatasfrompostgis/tree/master/getdatas"
+                                        target="_blank">ici
+                                </b-link>
                             </li>
                         </ul>
                         <h4>Application web</h4>

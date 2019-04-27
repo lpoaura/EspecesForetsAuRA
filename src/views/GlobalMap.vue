@@ -47,6 +47,7 @@ export default {
       title: "Accueil | Portail de synthèse des espèces de vertébrés forestiers à enjeux en Auvergne-Rhône-Alpes",
     meta: [
       { charset: 'utf-8' },
+      { name: 'description', content: 'Biodiversité, Portail de synthèse des espèces de vertébrés forestiers à enjeux en Auvergne-Rhône-Alpes'},
       {
         'property': 'og:title',
         'content': 'Accueil',
