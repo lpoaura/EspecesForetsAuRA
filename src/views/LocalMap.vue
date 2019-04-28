@@ -56,7 +56,7 @@
                     />
                 </l-map>
             </b-col>
-            <b-col v-if="displayDataCol" col lg="4" md="6" sm="9" class="datas">
+            <b-col v-if="displayDataCol" col lg="4" md="6" sm="11" class="datas">
 
                 <div v-if="featureProps">
                     <h1>Données

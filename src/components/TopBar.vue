@@ -3,9 +3,8 @@
         <b-navbar toggleable="lg">
             <b-navbar-brand href="#">
                 <img id="logo" alt="Vue logo" src="@/assets/logo.png">
-                Espèce de vertébrés forestiers à enjeux <i v-if='deptName'>({{deptName}})</i>
             </b-navbar-brand>
-
+                <span class="navbar-text d-none d-md-block"> Espèce de vertébrés forestiers à enjeux <i v-if='deptName'>({{deptName}})</i> </span>
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
             <b-collapse id="nav-collapse" is-nav>
@@ -36,7 +35,6 @@
 
 <script>
     import AboutProject from "./AboutProject";
-    import axios from 'axios';
 
     export default {
         name: "TobBar",
@@ -65,8 +63,8 @@
         metaInfo() {
             return {
                 meta: [
-                    { charset: 'utf-8' },
-                    { name: 'author', content: 'LPO Auvergne-Rhône-Alpes'},
+                    {charset: 'utf-8'},
+                    {name: 'author', content: 'LPO Auvergne-Rhône-Alpes'},
                 ]
             }
         },
