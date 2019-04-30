@@ -62,7 +62,7 @@
                     <h1>Données
                         <b-btn @click="closeDatas" class="float-right" variant="primary">Fermer</b-btn>
                     </h1>
-                    <span>Entre parenthèse les espèces non observées mais dont la présence reste possible au regard de contexte du territoire</span>
+                    <b-alert variant="info" show><b>Entre parenthèse</b> les espèces non observées mais dont la présence reste possible au regard de contexte du territoire</b-alert>
                     <div v-if="featureProps.nb_data">
                         <h4>
                             {{featureProps.nb_data}}
@@ -71,6 +71,7 @@
                             d'espèce forestière
                         </h4>
                     </div>
+                    <div v-else><h4>Aucune donnée d'espèces forestières à enjeux</h4></div>
                     <div v-if="featureProps.nb_sp">
                         <h4>
                             {{featureProps.nb_sp}}
@@ -313,8 +314,9 @@
                     this.nomDept +
                     ") | Portail de synthèse des espèces de vertébrés forestiers à enjeux en Auvergne-Rhône-Alpes",
                 meta: [
-                    { name: 'description', content: 'Synthèse des données pour le département ' + this.dept }
+                    { name: 'description', content: 'Synthèse des données pour le département ' + this.nomDept }
                 ]
+
             }
         },
         methods: {
@@ -333,6 +335,7 @@
                         this.geojsonDept = response.data;
                         this.bounds = L.geoJSON(this.geojsonDept).getBounds();
                         this.showDept = true;
+                        this.nomDept = this.geojsonDept['features'][0]['properties']['nom_dept'];
                     })
                     .catch(function (error) {
                         console.log(error);
