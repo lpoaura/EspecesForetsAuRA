@@ -4,7 +4,7 @@
         <b-row id="bloc">
             <b-col class="map">
                 <div class="alert-fixed">
-                    <b-alert show dismissible variant="primary">Cliquez sur la carte pour accéder
+                    <b-alert v-if="displayDataCol === false" show dismissible variant="primary">Cliquez sur la carte pour accéder
                         aux informations
                     </b-alert>
                 </div>
