@@ -13,6 +13,7 @@
     "eslint": "^5.16.0",
     "leaflet": "^1.4.0",
     "leaflet-ajax": "^2.1.0",
+    "leaflet-gesture-handling": "^1.1.8",
     "prerender-spa-plugin": "^3.4.0",
     "puppeteer": "^1.14.0",
     "vue": "^2.6.10",

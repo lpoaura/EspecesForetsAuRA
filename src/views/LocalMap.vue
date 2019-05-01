@@ -4,12 +4,15 @@
         <b-row id="bloc">
             <b-col class="map">
                 <div class="alert-fixed">
-                    <b-alert v-if="displayDataCol === false" show dismissible variant="primary">Cliquez sur la carte pour accéder
+                    <b-alert v-if="displayDataCol === false" show variant="primary">Cliquez sur la carte
+                        pour accéder
                         aux informations
                     </b-alert>
                 </div>
-                <div v-if="loading" class="loader"></div>
-                <l-map ref="deptMap" id="map" :zoom="zoom" :center="center" :bounds="bounds" :maxBounds="bounds">
+<!--                <div v-if="loading" class="loader"></div>-->
+                <spin-loader v-if="loading"></spin-loader>
+                <l-map ref="deptMap" id="map" :options="{gestureHandling: true}" :zoom="zoom" :center="center"
+                       :bounds="bounds" :maxBounds="bounds">
                     <l-tile-layer
                             :url="tileLayer.url"
                             :attribution="tileLayer.attribution"
@@ -19,7 +22,9 @@
                     <l-control :collapsed="true" class="legend" :position="legendPosition">
                         <div v-if="legend">
                             <h6>Nb d'espèces à enjeux
-                                <span size="sm" v-on:click="displayLegend(false)" class="float-right">x</span>
+                                <b-badge pill variant="primary" v-on:click="displayLegend(false)" class="float-right">
+                                    x
+                                </b-badge>
                             </h6>
                             <div v-for="item in legendItems">
                                 <canvas width="10" height="10" v-bind:style="{backgroundColor: item.color}"></canvas>
@@ -62,7 +67,9 @@
                     <h1>Données
                         <b-btn @click="closeDatas" class="float-right" variant="primary">Fermer</b-btn>
                     </h1>
-                    <b-alert variant="info" show><b>Entre parenthèse</b> les espèces non observées mais dont la présence reste possible au regard de contexte du territoire</b-alert>
+                    <b-alert variant="info" show><b>Entre parenthèse</b> les espèces non observées mais dont la présence
+                        reste possible au regard de contexte du territoire
+                    </b-alert>
                     <div v-if="featureProps.nb_data">
                         <h4>
                             {{featureProps.nb_data}}
@@ -236,11 +243,16 @@
 <script>
     // TODO : VOIR https://router.vuejs.org/guide/advanced/data-fetching.html#fetching-after-navigation/**/
     import {LControl, LControlLayers, LGeoJson, LMap, LTileLayer, LWMSTileLayer} from "vue2-leaflet";
+    import {GestureHandling} from 'leaflet-gesture-handling';
+    import SpinLoader from '../components/SpinLoader';
     import axios from "axios";
+
+    import "leaflet-gesture-handling/dist/leaflet-gesture-handling.css";
 
     export default {
         name: "LocalMap",
         components: {
+            SpinLoader,
             LMap,
             LTileLayer,
             LGeoJson,
@@ -314,7 +326,7 @@
                     this.nomDept +
                     ") | Portail de synthèse des espèces de vertébrés forestiers à enjeux en Auvergne-Rhône-Alpes",
                 meta: [
-                    { name: 'description', content: 'Synthèse des données pour le département ' + this.nomDept }
+                    {name: 'description', content: 'Synthèse des données pour le département ' + this.nomDept}
                 ]
 
             }
@@ -496,14 +508,20 @@
                 };
             }
         },
+        beforeCreate() {
+            this.$nextTick(() => {
+                this.$refs.deptMap.mapObject.addInitHook("addHandler", "gestureHandling", GestureHandling);
+            })
+        },
         created() {
             this.getDatas();
-        } // },
-        // beforeRouteUpdate (to, from, next) {
-        //     this.getDatas()
-        //     console.log('beforeRouteUpdate TO', to.params.dept);
-        //     next()
-        // }
+            // },
+            // beforeRouteUpdate (to, from, next) {
+            //     this.getDatas()
+            //     console.log('beforeRouteUpdate TO', to.params.dept);
+            //     next()
+            // }
+        }
     };
 </script>
 
