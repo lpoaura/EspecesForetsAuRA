@@ -1,10 +1,10 @@
 <template>
     <div>
         <b-navbar toggleable="lg">
-            <b-navbar-brand href="#">
+            <b-navbar-brand :to="{ name: 'home'}">
                 <img id="logo" alt="Vue logo" src="@/assets/logo.png">
             </b-navbar-brand>
-                <span class="navbar-text d-none d-md-block"> Espèce de vertébrés forestiers à enjeux <i v-if='deptName'>({{deptName}})</i> </span>
+            <span class="navbar-text d-none d-md-block"> Espèce de vertébrés forestiers à enjeux <i v-if='deptName'>({{deptName}})</i> </span>
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
             <b-collapse id="nav-collapse" is-nav>
@@ -19,13 +19,15 @@
                                     placeholder="Département"
                             ></b-form-select>
                             <b-input-group-append>
-                                <b-button variant="outline-success" :to="{ name: 'home'}">Accueuil</b-button>
-                                <b-button variant="outline-info" v-b-modal.about-modal>A propos</b-button>
+                                <b-btn variant="outline-success" :to="{ name: 'home'}">Accueil</b-btn>
+                                <b-btn variant="outline-info" v-b-modal.about-modal>Le projet</b-btn>
+                                <b-btn variant="outline-primary" v-b-modal.partners-modal>Partenaires contributeurs</b-btn>
                             </b-input-group-append>
                         </b-input-group>
                     </b-nav-form>
                     <!-- Modal Component -->
                     <about-project></about-project>
+                    <partners></partners>
                 </b-navbar-nav>
             </b-collapse>
         </b-navbar>
@@ -35,10 +37,11 @@
 
 <script>
     import AboutProject from "./AboutProject";
+    import Partners from "./Partners";
 
     export default {
         name: "TobBar",
-        components: {AboutProject},
+        components: {AboutProject, Partners},
         data() {
             return {
                 selected: null,
@@ -93,12 +96,9 @@
             },
             getSelected() {
                 const dept = this.$route.params.dept;
-                console.log("TOPBAR DEPTS", dept);
-                console.log("TOPBAR SELECTED BEFORE", this.selected);
                 if (dept) {
                     this.selected = dept;
                 }
-                console.log("TOPBAR SELECTED AFTER", this.selected);
             }
         },
         watch: {

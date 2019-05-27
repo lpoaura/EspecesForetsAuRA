@@ -1,3 +1,7 @@
+// custom.scss
+@import 'node_modules/bootstrap/scss/bootstrap';
+@import 'node_modules/bootstrap-vue/src/index.scss';
+
 @font-face {
     font-family: "Abel";
     src: url("./assets/abel-regular.ttf");
@@ -6,7 +10,7 @@
 html,
 body {
     height: 100vh;
-    font-family: "Abel", Arial, Helvetica, sans-serif;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
 
 h1,
@@ -16,7 +20,7 @@ h4,
 h5,
 h6 {
     color: #1779ba;
-    font-family: "Abel", Arial, Helvetica, sans-serif;
+    font-family: "Abel", "Trebuchet MS", Helvetica, sans-serif;
 }
 
 .navbar {

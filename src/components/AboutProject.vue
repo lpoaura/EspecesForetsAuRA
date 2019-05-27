@@ -5,59 +5,40 @@
             <b-tabs content-class="mt-3">
                 <b-tab active title="Le projet">
                     <h2>
-                        Valorisation des connaissances sur les espèces forestières pour une
-                        meilleure prise en compte dans la gestion forestière</h2>
-                    <p>Cette action est réalisée dans le cadre du
-                        programme d'actions de la LPO Auvergne-Rhône-Alpes en faveur de la
-                        biodiversité en Auvergne-Rhône-Alpes. Cette action est soutenue
-                        financièrement par la DRAAF&nbsp;: Direction Régionale de
-                        l’Alimentation, de l’Agriculture et de la Forêt
-                        Auvergne-Rhône-Alpes.</p>
+                        Valorisation des connaissances sur les espèces forestières pour une meilleure prise en compte
+                        dans la gestion forestière</h2>
+                    <p>Cette action, réalisée par la LPO Auvergne-Rhône-Alpes et soutenue financièrement par la DRAAF et
+                        la Région Auvergne-Rhône-Alpes a pour objectif de porter à connaissances des gestionnaires
+                        forestiers les informations sur la présence d’espèces sensibles à la gestion forestière et de
+                        diffuser des recommandations d’intervention.</p>
 
                     <p align="center">
                         <a href="http://www.auvergnerhonealpes.fr/"><img id="logo_region"
-                                                                         src="@/assets/logo_region_aura.svg"></a>
+                                                                         src="@/assets/logo_region_aura.svg"></a>&nbsp;&nbsp;
                         &nbsp;
                         <a href="http://draaf.auvergne-rhone-alpes.agriculture.gouv.fr/"><img id="logo_region"
                                                                                               src="@/assets/logo_draaf.png"></a>
                     </p>
                     <h2>Méthode</h2>
-                    <p>Ce portail cartographique présente à l’échelle d’une maille de 1km sur 1km, la présence avérée et
+                    <p>Ce portail cartographique présente à l’échelle de mailles kilométriques, la présence avérée et
                         probable d’espèces forestières à enjeux patrimoniales.</p>
-                    <p>Les espèces sélectionnées ont été choisies en fonction de leur statut sur les liste rouges
-                        régionales et dont leur préservation est notamment liée à la gestion forestière.</p>
-                    <p>L’ensemble des données, localisées en milieux forestiers (habitats forestiers selon la BD Forêt&reg;
+                    <p>Les espèces sélectionnées ont été choisies en fonction de leur statut sur les listes rouges
+                        régionales et de leur sensibilité à la gestion forestière.</p>
+                    <p>L’ensemble des données, localisées en milieux forestiers (habitats forestiers selon la BD Forêt®
                         de l’IGN ), de l’ensemble de la région ont été extraites des bases de données naturalistes (LPO,
-                        Chauves-souris Auvergne, Groupe Mammalogique d’Auvergne, CPIE) et utilisées pour la réalisation
+                        Chauve-Souris Auvergne, Groupe Mammalogique d’Auvergne, CPIE) et utilisées pour la réalisation
                         de ces cartes.</p>
-                    <p>Ce jeu de données a été homogénéisé et traité afin d’obtenir des informations à l’échelle des
-                        départements sur un maillage composé de mailles de 1 km x 1 km.</p>
                     <p>Pour chaque maille, deux informations sont présentées&nbsp;:</p>
                     <ul>
-                        <li>la présence avérée de l’espèce&nbsp;</li>
-                        <li>la présence probable de l’espèce (si l’espèce n’est pas notée sur la maille). Cette
-                            probabilité de présence a été calculée via une méthode statistique (Biomod2) en mettant en
+                        <li>les espèces observées&nbsp;;</li>
+                        <li>les espèces probablement présentes. Cette probabilité a été calculée via une méthode
+                            statistique (<code>Biomod2</code>) en mettant en
                             relation des données environnementales et les données de présence de l’espèce. Il s’agit des
                             espèces listées entre parenthèses.
                         </li>
                     </ul>
                     <br/>
-                    <b-card
-                            border-variant="danger"
-                            header="Mise en garde"
-                            header-border-variant="danger"
-                            header-text-variant="danger"
-                            align="center"
-                    >
-                        <b-card-text align="justify">
-                            <p>Cette carte est une représentation actuelle du
-                                niveau de connaissance des espèces dans les forêts
-                                d’Auvergne-Rhône-Alpes. L’absence d’espèce sur certaines
-                                mailles peut être due à un défaut de prospection et non à une
-                                vraie absence. Il faut donc rester prudent quant à l’interprétation
-                                de cette carte.</p>
-                        </b-card-text>
-                    </b-card>
+
                 </b-tab>
                 <b-tab title="Qui?">
                     <h3>Contact régional</h3>
@@ -130,7 +111,8 @@
                             align="center"
                     >
                         <b-card-text align="justify">
-                            L’ensemble des données naturalistes régionales sont issues des bases de données des associations naturalistes (LPO,
+                            L’ensemble des données naturalistes régionales sont issues des bases de données des
+                            associations naturalistes (LPO,
                             Chauves-souris Auvergne, Groupe Mammalogique d’Auvergne, CPIE).
                         </b-card-text>
                     </b-card>

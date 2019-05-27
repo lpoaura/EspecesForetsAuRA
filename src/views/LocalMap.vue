@@ -8,8 +8,20 @@
                         pour accéder
                         aux informations
                     </b-alert>
+                    <b-alert
+                            variant="danger"
+                            dismissible
+                            fade
+                            :show="showWarning"
+                            @dismissed="showWarning=false"
+                    >
+                        <p>Cette carte est une représentation actuelle du niveau de connaissance des espèces dans
+                            les forêts d’Auvergne-Rhône-Alpes. L’absence d’espèce sur certaines mailles peut être
+                            due à un défaut de prospection et non à une vraie absence. Il faut donc rester prudent
+                            quant à l’interprétation de cette carte.</p>
+                    </b-alert>
                 </div>
-<!--                <div v-if="loading" class="loader"></div>-->
+                <!--                <div v-if="loading" class="loader"></div>-->
                 <spin-loader v-if="loading"></spin-loader>
                 <l-map ref="deptMap" id="map" :options="{gestureHandling: true}" :zoom="zoom" :center="center"
                        :bounds="bounds" :maxBounds="bounds">
@@ -39,7 +51,6 @@
                     <l-geo-json
                             v-if="showDept"
                             :geojson="geojsonDept"
-                            :options="options"
                             :optionsStyle="styleDept"
                     />
                     <l-geo-json
@@ -65,28 +76,29 @@
 
                 <div v-if="featureProps">
                     <h1>Données
-                        <b-btn @click="closeDatas" class="float-right" variant="primary">Fermer</b-btn>
+                        <b-button pill @click="closeDatas" class="float-right" variant="outline-danger">&times;
+                        </b-button>
                     </h1>
                     <b-alert variant="info" show><b>Entre parenthèse</b> les espèces non observées mais dont la présence
                         reste possible au regard de contexte du territoire
                     </b-alert>
-                    <div v-if="featureProps.nb_data">
-                        <h4>
-                            {{featureProps.nb_data}}
-                            <span v-if="featureProps.nb_data == 1">donnée</span>
-                            <span v-else>données</span>
-                            d'espèce forestière
-                        </h4>
-                    </div>
-                    <div v-else><h4>Aucune donnée d'espèces forestières à enjeux</h4></div>
-                    <div v-if="featureProps.nb_sp">
-                        <h4>
-                            {{featureProps.nb_sp}}
-                            <span
-                                    v-if="featureProps.nb_sp == 1"
-                            >espèce forestière à enjeu observée</span>
-                            <span v-else>espèces forestières à enjeux observées</span>
-                        </h4>
+                    <div class="nbdata">
+                        <div v-if="featureProps.nb_data">
+                            <h4>
+                                {{featureProps.nb_data}}
+                                <span v-if="featureProps.nb_data == 1">donnée</span>
+                                <span v-else>données</span>
+                                d'espèce forestière
+                            </h4>
+                            <h4>
+                                {{featureProps.nb_sp}}
+                                <span
+                                        v-if="featureProps.nb_sp == 1"
+                                >espèce forestière à enjeu observée</span>
+                                <span v-else>espèces forestières à enjeux observées</span>
+                            </h4>
+                        </div>
+                        <div v-else><h4>Aucune donnée d'espèces forestières à enjeux</h4></div>
                     </div>
                     <div v-if="featureProps.list_chiro">
                         <h4>
@@ -243,7 +255,7 @@
 <script>
     // TODO : VOIR https://router.vuejs.org/guide/advanced/data-fetching.html#fetching-after-navigation/**/
     import {LControl, LControlLayers, LGeoJson, LMap, LTileLayer, LWMSTileLayer} from "vue2-leaflet";
-    import {GestureHandling} from 'leaflet-gesture-handling';
+    // import {GestureHandling} from 'leaflet-gesture-handling';
     import SpinLoader from '../components/SpinLoader';
     import axios from "axios";
 
@@ -266,6 +278,7 @@
                 baseUrl: process.env.BASE_URL,
                 showDept: false,
                 showDatas: false,
+                showWarning: true,
                 enableTooltip: true,
                 baseWmsUrl:
                     "http://wxs.ign.fr/corinelandcover/geoportail/r/wms?service=WMS&request=GetCapabilities",
@@ -306,17 +319,17 @@
                     {label: "Aucune espèce observée", color: "rgba(0,0,0,0)"},
                     {
                         label: "De 1 à 4 espèces observées",
-                        color: "rgb(255, 255, 178, 0.75)"
+                        color: "rgb(255, 255, 178, 0.5)"
                     },
                     {
                         label: "De 5 à 6 espèces observées",
-                        color: "rgba(254, 183, 81, 0.75)"
+                        color: "rgba(254, 183, 81, 0.5)"
                     },
                     {
                         label: "De 7 à 8 espèces observées",
-                        color: "rgba(245, 86, 41, 0.75)"
+                        color: "rgba(245, 86, 41, 0.5)"
                     },
-                    {label: "Plus de 9 espèces observées", color: "rgba(189, 0, 38, 0.9)"}
+                    {label: "Plus de 9 espèces observées", color: "rgba(189, 0, 38, 0.5)"}
                 ]
             };
         },
@@ -406,6 +419,7 @@
                 const weight = 0.5;
                 const linecolor = "white";
                 const opacity = 0.8;
+                const fillopacity = 0.5;
                 return feature => {
                     if (
                         feature.properties.nb_sp >= 0.0 &&
@@ -431,7 +445,7 @@
                             lineCap: "butt",
                             lineJoin: "miter",
                             fillColor: "rgb(255, 255, 178)",
-                            fillOpacity: "0.75"
+                            fillOpacity: fillopacity
                         };
                     }
                     if (feature.properties.nb_sp >= 4.0 && feature.properties.nb_sp < 7.0) {
@@ -443,7 +457,7 @@
                             lineCap: "butt",
                             lineJoin: "miter",
                             fillColor: "rgba(254, 183, 81)",
-                            fillOpacity: "0.75"
+                            fillOpacity: fillopacity
                         };
                     }
                     if (feature.properties.nb_sp >= 7.0 && feature.properties.nb_sp < 9.0) {
@@ -455,7 +469,7 @@
                             lineCap: "butt",
                             lineJoin: "miter",
                             fillColor: "rgba(245, 86, 41)",
-                            fillOpacity: "0.8"
+                            fillOpacity: fillopacity
                         };
                     }
                     if (feature.properties.nb_sp >= 9.0) {
@@ -467,7 +481,7 @@
                             lineCap: "butt",
                             lineJoin: "miter",
                             fillColor: "#bd0026",
-                            fillOpacity: "0.9"
+                            fillOpacity: fillopacity
                         };
                     }
                 };
@@ -504,15 +518,27 @@
                         }
                         ;
                         self.displayData = true;
-                    });
+                    }),
+                        layer.on('mouseover', function (e) {
+                            layer.setStyle({
+                                weight: 5,
+                                color: '#c82333'
+                            })
+                        }),
+                        layer.on('mouseout', function (e) {
+                            layer.setStyle({
+                                weight: 2,
+                                color: 'white'
+                            })
+                        });
                 };
             }
         },
-        beforeCreate() {
-            this.$nextTick(() => {
-                this.$refs.deptMap.mapObject.addInitHook("addHandler", "gestureHandling", GestureHandling);
-            })
-        },
+        // beforeCreate() {
+        //     this.$nextTick(() => {
+        //         this.$refs.deptMap.mapObject.addInitHook("addHandler", "gestureHandling", GestureHandling);
+        //     })
+        // },
         created() {
             this.getDatas();
             // },
@@ -539,6 +565,10 @@
         position: absolute !important;
         min-height: inherit;
         height: 100%;
+    }
+
+    .nbdata h4 {
+        color: orangered;
     }
 
     .datas {
