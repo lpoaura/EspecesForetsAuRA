@@ -83,21 +83,16 @@
                         reste possible au regard de contexte du territoire
                     </b-alert>
                     <div class="nbdata">
-                        <div v-if="featureProps.nb_data">
+                        <div v-if="featureProps.nb_sp_total">
                             <h4>
-                                {{featureProps.nb_data}}
-                                <span v-if="featureProps.nb_data == 1">donnée d'espèce forestière</span>
-                                <span v-else>données d'espèces forestières</span>
-                            </h4>
-                            <h4>
-                                {{featureProps.nb_sp}}
+                                {{featureProps.nb_sp_total}}
                                 <span
-                                        v-if="featureProps.nb_sp == 1"
-                                >espèce forestière à enjeu observée</span>
-                                <span v-else>espèces forestières à enjeux observées</span>
+                                        v-if="featureProps.nb_sp_total == 1"
+                                >espèce forestière à enjeu</span>
+                                <span v-else>espèces forestières à enjeux</span>
                             </h4>
                         </div>
-                        <div v-else><h4>Aucune donnée d'espèces forestières à enjeux</h4></div>
+                        <div v-else><h4>Aucune espèce forestière à enjeu</h4></div>
                     </div>
                     <div v-if="featureProps.list_chiro">
                         <h4>
@@ -317,18 +312,18 @@
                 legendItems: [
                     {label: "Aucune espèce observée", color: "rgba(0,0,0,0)"},
                     {
-                        label: "De 1 à 4 espèces observées",
+                        label: "De 1 à 3 espèces",
                         color: "rgb(255, 255, 178, 0.5)"
                     },
                     {
-                        label: "De 5 à 6 espèces observées",
+                        label: "De 4 à 7 espèces",
                         color: "rgba(254, 183, 81, 0.5)"
                     },
                     {
-                        label: "De 7 à 8 espèces observées",
+                        label: "De 8 à 11 espèces",
                         color: "rgba(245, 86, 41, 0.5)"
                     },
-                    {label: "Plus de 9 espèces observées", color: "rgba(189, 0, 38, 0.5)"}
+                    {label: "Plus de 11 espèces", color: "rgba(189, 0, 38, 0.5)"}
                 ]
             };
         },
@@ -366,7 +361,7 @@
                     });
                 axios
                     .get(
-                        "https://data.fauneauvergnerhonealpes.org/getdatas/getData.php?geotable=webgis.draaf_esp_foret&geomfield=geom&fields=nb_data,nb_sp,pres_castor,list_chiro,pres_chatforest,list_amphib,list_rap_ard,list_tetrao,list_pics,list_esp_vieil_foret,list_esp_semi_ouv,list_chouettes,list_prebois&parameters=dept+ilike+%27" +
+                        "https://data.fauneauvergnerhonealpes.org/getdatas/getData.php?geotable=webgis.draaf_esp_foret_v2&geomfield=geom&fields=nb_data,nb_sp_total,pres_castor,list_chiro,pres_chatforest,list_amphib,list_rap_ard,list_tetrao,list_pics,list_esp_vieil_foret,list_esp_semi_ouv,list_chouettes,list_prebois&parameters=dept+ilike+%27" +
                         this.dept +
                         "%27"
                     )
@@ -397,8 +392,8 @@
                 };
             },
             nbSp(feature) {
-                if (feature.properties.nb_sp) {
-                    var nbSp = "Données: " + feature.properties.nb_sp;
+                if (feature.properties.nb_sp_total) {
+                    var nbSp = "Données: " + feature.properties.nb_sp_total;
                 }
                 return nbSp;
             },
@@ -421,8 +416,8 @@
                 const fillopacity = 0.5;
                 return feature => {
                     if (
-                        feature.properties.nb_sp >= 0.0 &&
-                        feature.properties.nb_sp <= 0.0
+                        feature.properties.nb_sp_total >= 0.0 &&
+                        feature.properties.nb_sp_total <= 0.0
                     ) {
                         return {
                             color: linecolor,
@@ -435,7 +430,7 @@
                             fillOpacity: "0.0"
                         };
                     }
-                    if (feature.properties.nb_sp >= 0.0 && feature.properties.nb_sp < 4.0) {
+                    if (feature.properties.nb_sp_total >= 0.0 && feature.properties.nb_sp_total < 4.0) {
                         return {
                             color: linecolor,
                             weight: weight,
@@ -447,7 +442,7 @@
                             fillOpacity: fillopacity
                         };
                     }
-                    if (feature.properties.nb_sp >= 4.0 && feature.properties.nb_sp < 7.0) {
+                    if (feature.properties.nb_sp_total >= 4.0 && feature.properties.nb_sp_total < 8.0) {
                         return {
                             color: linecolor,
                             weight: weight,
@@ -459,7 +454,7 @@
                             fillOpacity: fillopacity
                         };
                     }
-                    if (feature.properties.nb_sp >= 7.0 && feature.properties.nb_sp < 9.0) {
+                    if (feature.properties.nb_sp_total >= 8.0 && feature.properties.nb_sp_total < 12.0) {
                         return {
                             color: linecolor,
                             weight: weight,
@@ -471,7 +466,7 @@
                             fillOpacity: fillopacity
                         };
                     }
-                    if (feature.properties.nb_sp >= 9.0) {
+                    if (feature.properties.nb_sp_total >= 12.0) {
                         return {
                             color: linecolor,
                             weight: weight,
@@ -526,7 +521,7 @@
                         }),
                         layer.on('mouseout', function (e) {
                             layer.setStyle({
-                                weight: 2,
+                                weight: 0.5,
                                 color: 'white'
                             })
                         });

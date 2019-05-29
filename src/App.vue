@@ -3,14 +3,16 @@
         <top-bar></top-bar>
         <router-view/>
         <footer></footer>
+
     </div>
 </template>
 <script>
     import TopBar from './components/TopBar'
+    import WebStats from './components/WebStats'
 
     export default {
         name: 'App',
-        components: {TopBar}
+        components: {TopBar, WebStats}
     }
 </script>
 

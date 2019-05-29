@@ -1,10 +1,26 @@
 <template>
     <div>
         <b-navbar toggleable="lg">
-            <b-navbar-brand :to="{ name: 'home'}">
-                <img id="logo" alt="Vue logo" src="@/assets/logo.png">
+            <b-navbar-brand>
+                <div class="d-block d-lg-none">
+                    <img id="logo" alt="Vue logo" src="@/assets/logo.png" v-b-modal.partners-modal>
+                </div>
+                <div class="d-none d-lg-block">
+                    <a href="http://auvergne-rhone-alpes.lpo.fr/" target="_blank">
+                        <img class="logos img-fluid" src="@/assets/logo_lpo.png" alt="logo LpoAuRA"></a>&nbsp;
+                    <a href="http://cpie-clermont-domes.org/presentation-du-centre-de-ressources-du-cpie-clermont-domes/observatoire-des-amphibiens/"
+                       target="_blank">
+                        <img class="logos img-fluid" src="@/assets/logo_urcpie.jpg" alt="logo OAA"></a>&nbsp;
+                    <a href="http://www.chauve-souris-auvergne.fr/" target="_blank">
+                        <img class="logos img-fluid" src="@/assets/logo_csa.jpg" alt="logo CSA"></a>&nbsp;
+                    <a href="http://mammiferes.org/" target="_blank">
+                        <img class="logos img-fluid" src="@/assets/logo_gma.jpg" alt="logo GMA"></a>&nbsp;
+                    <a href="http://urcpie-aura.org/" target="_blank">
+                        <img class="logos img-fluid" src="@/assets/logo_ora.png" alt="logo URCPIE"></a>
+                </div>
             </b-navbar-brand>
-            <span class="navbar-text d-none d-md-block"> Espèce de vertébrés forestiers à enjeux <i v-if='deptName'>({{deptName}})</i> </span>
+            <span class="navbar-text d-none d-md-block"> Espèce de vertébrés forestiers à enjeux&nbsp;</span><i v-if='deptName'>({{deptName}})</i>
+
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
             <b-collapse id="nav-collapse" is-nav>
@@ -21,7 +37,8 @@
                             <b-input-group-append>
                                 <b-btn variant="outline-success" :to="{ name: 'home'}">Accueil</b-btn>
                                 <b-btn variant="outline-info" v-b-modal.about-modal>Le projet</b-btn>
-                                <b-btn variant="outline-primary" v-b-modal.partners-modal>Partenaires contributeurs</b-btn>
+<!--                                <b-btn variant="outline-primary" v-b-modal.partners-modal>Partenaires contributeurs-->
+                                </b-btn>
                             </b-input-group-append>
                         </b-input-group>
                     </b-nav-form>
@@ -112,7 +129,7 @@
 
 
 <style lang="scss">
-    #logo {
-        height: 50px;
+    .logos {
+        max-height: 40px;
     }
 </style>
