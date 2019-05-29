@@ -8,11 +8,10 @@
 </template>
 <script>
     import TopBar from './components/TopBar'
-    import WebStats from './components/WebStats'
 
     export default {
         name: 'App',
-        components: {TopBar, WebStats}
+        components: {TopBar}
     }
 </script>
 

@@ -1,9 +1,0 @@
-<template>
-<!--    Add your webstats code here-->
-</template>
-
-<script>
-    export default {
-        name: "WebStats"
-    }
-</script>
