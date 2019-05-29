@@ -1,8 +1,8 @@
 <template>
     <b-modal id="about-modal" ok-only ok-title="Fermer" ok-variant="danger" scrollable size="xl"
              title="A propos du projet">
-        <div id="modal-content">
-            <b-tabs content-class="mt-3">
+        <b-card id="modal-content" no-body>
+            <b-tabs fill pills card>
                 <b-tab active title="Le projet">
                     <h2>
                         Valorisation des connaissances sur les espèces forestières pour une meilleure prise en compte
@@ -114,11 +114,24 @@
                             L’ensemble des données naturalistes régionales sont issues des bases de données des
                             associations naturalistes (LPO,
                             Chauves-souris Auvergne, Groupe Mammalogique d’Auvergne, CPIE).
+                            <div class="text-center">
+                                <a href="http://auvergne-rhone-alpes.lpo.fr/" target="_blank">
+                                    <img class="imgTable" src="@/assets/logo_lpo.png" alt="logo LpoAuRA"></a>&nbsp;
+                                <a href="http://cpie-clermont-domes.org/presentation-du-centre-de-ressources-du-cpie-clermont-domes/observatoire-des-amphibiens/"
+                                   target="_blank">
+                                    <img class="imgTable" src="@/assets/logo_urcpie.jpg" alt="logo OAA"></a>&nbsp;
+                                <a href="http://www.chauve-souris-auvergne.fr/" target="_blank">
+                                    <img class="imgTable" src="@/assets/logo_csa.jpg" alt="logo CSA"></a>&nbsp;
+                                <a href="http://mammiferes.org/" target="_blank">
+                                    <img class="imgTable" src="@/assets/logo_gma.jpg" alt="logo GMA"></a>&nbsp;
+                                <a href="http://urcpie-aura.org/" target="_blank">
+                                    <img class="imgTable" src="@/assets/logo_ora.png" alt="logo URCPIE"></a>
+                            </div>
                         </b-card-text>
                     </b-card>
                 </b-tab>
             </b-tabs>
-        </div>
+        </b-card>
     </b-modal>
 </template>
 

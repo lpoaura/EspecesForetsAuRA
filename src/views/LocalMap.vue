@@ -86,9 +86,8 @@
                         <div v-if="featureProps.nb_data">
                             <h4>
                                 {{featureProps.nb_data}}
-                                <span v-if="featureProps.nb_data == 1">donnée</span>
-                                <span v-else>données</span>
-                                d'espèce forestière
+                                <span v-if="featureProps.nb_data == 1">donnée d'espèce forestière</span>
+                                <span v-else>données d'espèces forestières</span>
                             </h4>
                             <h4>
                                 {{featureProps.nb_sp}}

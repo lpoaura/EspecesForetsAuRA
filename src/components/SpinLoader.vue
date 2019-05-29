@@ -14,7 +14,7 @@
 
 <style scoped>
     .loader1 {
-        border: 1px solid #eeeeee; /* Light grey */
+        border: 1px solid transparent;/* Light grey */
         border-top: 3px solid #3498db; /* Blue */
         border-radius: 50%;
         position: absolute !important;
@@ -29,7 +29,7 @@
     }
 
     .loader2 {
-        border: 1px solid #eeeeee; /* Light grey */
+        border: 1px solid transparent; /* Light grey */
         border-top: 3px solid #3498db; /* Blue */
         border-radius: 50%;
         position: absolute !important;
@@ -45,7 +45,7 @@
     }
 
     .loader3 {
-        border: 1px solid #eeeeee; /* Light grey */
+        border: 1px solid transparent; /* Light grey */
         border-top: 3px solid #3498db; /* Blue */
         border-radius: 50%;
         position: absolute !important;
