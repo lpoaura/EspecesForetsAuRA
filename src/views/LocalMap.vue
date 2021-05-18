@@ -30,6 +30,7 @@
                             :attribution="tileLayer.attribution"
                             :opacity="tileLayer.opacity"
                     />
+                    <l-control-scale position="bottomleft" :imperial="false" ></l-control-scale>
                     <l-control-layers :collapsed="true"/>
                     <l-control :collapsed="true" class="legend" :position="legendPosition">
                         <div v-if="legend">
@@ -248,7 +249,7 @@
 
 <script>
     // TODO : VOIR https://router.vuejs.org/guide/advanced/data-fetching.html#fetching-after-navigation/**/
-    import {LControl, LControlLayers, LGeoJson, LMap, LTileLayer, LWMSTileLayer} from "vue2-leaflet";
+    import {LControl, LControlScale, LControlLayers, LGeoJson, LMap, LTileLayer, LWMSTileLayer} from "vue2-leaflet";
     // import {GestureHandling} from 'leaflet-gesture-handling';
     import SpinLoader from '../components/SpinLoader';
     import axios from "axios";
@@ -263,6 +264,7 @@
             LTileLayer,
             LGeoJson,
             LControl,
+            LControlScale,
             "l-wms-tile-layer": LWMSTileLayer,
             LControlLayers
         },
