@@ -7,10 +7,10 @@
                 <p>
                     <small>Avec le soutien financier de</small>
                 </p>
-                <a href="http://www.auvergnerhonealpes.fr/"><img id="logo_region"
+                <a href="http://www.auvergnerhonealpes.fr/" target="_blank"><img id="logo_region"
                                                                  src="@/assets/logo_region_aura.svg"></a> &nbsp;&nbsp;
-                <a href="http://draaf.auvergne-rhone-alpes.agriculture.gouv.fr/"><img id="logo_draaf"
-                                                                                      src="@/assets/logo_draaf.png"></a>
+                <a href="https://www.prefectures-regions.gouv.fr/auvergne-rhone-alpes" target="_blank"><img id="logo_pref_aura"
+                                                                                      src="@/assets/logo_pref_aura.svg"></a>
             </l-control>
         </l-map>
         <b-modal v-model="openModal" ref="modalInfo" ok-only ok-title="Fermer" ok-variant="danger" scrollable hide-header>
@@ -24,10 +24,10 @@
                 <p>Un projet réalisé avec le soutien financier de :</p>
                 <div class="text-center">
                         <div class="logo">
-                            <a href="http://www.auvergnerhonealpes.fr/"><img id="logo_region"
+                            <a href="http://www.auvergnerhonealpes.fr/" target="_blank"><img id="logo_region"
                                                                              src="@/assets/logo_region_aura.svg"></a>&nbsp;&nbsp;
-                            <a href="http://draaf.auvergne-rhone-alpes.agriculture.gouv.fr/"><img id="logo_draaf"
-                                                                                                  src="@/assets/logo_draaf.png"></a>
+                            <a href="https://www.prefectures-regions.gouv.fr/auvergne-rhone-alpes" target="_blank"><img id="logo_pref_aura"
+                                                                                                  src="@/assets/logo_pref_aura.svg"></a>
                         </div>
                 </div>
             </div>

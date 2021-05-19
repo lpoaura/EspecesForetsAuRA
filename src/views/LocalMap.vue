@@ -80,9 +80,20 @@
                         <b-button pill @click="closeDatas" class="float-right" variant="outline-danger">&times;
                         </b-button>
                     </h1>
-                    <b-alert variant="info" show><b>Entre parenthèse</b> les espèces non observées mais dont la présence
+                    <b-alert variant="info" show><b>Entre parenthèses</b> les espèces non observées mais dont la présence
                         reste possible au regard de contexte du territoire
                     </b-alert>
+                     <div class="nbdata">
+                        <div v-if="featureProps.nb_sp_total">
+                            <h4>
+                                {{featureProps.nb_sp_total}}
+                                <span
+                                        v-if="featureProps.nb_sp_total == 1"
+                                >espèce forestière à enjeu</span>
+                                <span v-else>espèces forestières à enjeux</span>
+                            </h4>
+                        </div>
+                        <div v-else><h4>Aucune espèce forestière à enjeu</h4></div>
                     </div>
                     <div v-if="featureProps.list_chiro != 'Absence de donnée'">
                         <h4>
@@ -97,7 +108,7 @@
                         </h4>
                         <p>{{featureProps.list_chiro}}</p>
                     </div>
-                    <div v-if="featureProps.pres_castor">
+                    <div v-if="featureProps.pres_castor != 'Absence de donnée'">
                         <h4>
                             Castor d'Europe
                             <b-badge
@@ -110,7 +121,7 @@
                         </h4>
                         <p>{{featureProps.pres_castor}}</p>
                     </div>
-                    <div v-if="featureProps.list_amphib">
+                    <div v-if="featureProps.list_amphib != 'Absence de donnée'">
                         <h4>
                             Amphibiens
                             <b-badge
@@ -123,7 +134,7 @@
                         </h4>
                         <p>{{featureProps.list_amphib}}</p>
                     </div>
-                    <div v-if="featureProps.list_rap_ard">
+                    <div v-if="featureProps.list_rap_ard != 'Absence de donnée'">
                         <h4>
                             Rapaces & Ardéidés
                             <b-badge
@@ -136,7 +147,7 @@
                         </h4>
                         <p>{{featureProps.list_rap_ard}}</p>
                     </div>
-                    <div v-if="featureProps.list_tetrao">
+                    <div v-if="featureProps.list_tetrao != 'Absence de donnée'">
                         <h4>
                             Tétraonidés
                             <b-badge
@@ -149,7 +160,7 @@
                         </h4>
                         <p>{{featureProps.list_tetrao}}</p>
                     </div>
-                    <div v-if="featureProps.list_pics">
+                    <div v-if="featureProps.list_pics != 'Absence de donnée'">
                         <h4>
                             Pics
                             <b-badge
@@ -162,7 +173,7 @@
                         </h4>
                         <p>{{featureProps.list_pics}}</p>
                     </div>
-                    <div v-if="featureProps.list_chouettes">
+                    <div v-if="featureProps.list_chouettes != 'Absence de donnée'">
                         <h4>
                             Chouettes
                             <b-badge
@@ -175,7 +186,7 @@
                         </h4>
                         <p>{{featureProps.list_chouettes}}</p>
                     </div>
-                    <div v-if="featureProps.list_esp_vieil_foret">
+                    <div v-if="featureProps.list_esp_vieil_foret != 'Absence de donnée'">
                         <h4>
                             Espèces de vieilles forêts
                             <b-badge
@@ -188,7 +199,7 @@
                         </h4>
                         <p>{{featureProps.list_esp_vieil_foret}}</p>
                     </div>
-                    <div v-if="featureProps.list_esp_semi_ouv">
+                    <div v-if="featureProps.list_esp_semi_ouv != 'Absence de donnée'">
                         <h4>
                             Espèces de milieux semi-ouverts
                             <b-badge
@@ -201,7 +212,7 @@
                         </h4>
                         <p>{{featureProps.list_esp_semi_ouv}}</p>
                     </div>
-                    <div v-if="featureProps.list_prebois">
+                    <div v-if="featureProps.list_prebois != 'Absence de donnée'">
                         <h4>
                             Espèces de prébois
                             <b-badge
@@ -540,6 +551,21 @@
     }
 
 
+    .datas {
+        border-left: 1px solid teal;
+        width: 100%;
+        padding: 20px;
+        min-height: inherit;
+        min-width: inherit;
+        height: 100%;
+        position: relative;
+        text-align: left;
+        overflow-y: scroll;
+    }
+
+    .nbdata h4 {
+        color: orangered;
+    }
     .datas {
         border-left: 1px solid teal;
         width: 100%;
