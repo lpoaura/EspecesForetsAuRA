@@ -83,19 +83,8 @@
                     <b-alert variant="info" show><b>Entre parenthèse</b> les espèces non observées mais dont la présence
                         reste possible au regard de contexte du territoire
                     </b-alert>
-                    <div class="nbdata">
-                        <div v-if="featureProps.nb_sp_total">
-                            <h4>
-                                {{featureProps.nb_sp_total}}
-                                <span
-                                        v-if="featureProps.nb_sp_total == 1"
-                                >espèce forestière à enjeu</span>
-                                <span v-else>espèces forestières à enjeux</span>
-                            </h4>
-                        </div>
-                        <div v-else><h4>Aucune espèce forestière à enjeu</h4></div>
                     </div>
-                    <div v-if="featureProps.list_chiro">
+                    <div v-if="featureProps.list_chiro != 'Absence de donnée'">
                         <h4>
                             Chauves-souris
                             <b-badge
@@ -107,19 +96,6 @@
                             </b-badge>
                         </h4>
                         <p>{{featureProps.list_chiro}}</p>
-                    </div>
-                    <div v-if="featureProps.pres_chatforest">
-                        <h4>
-                            Chat forestier
-                            <b-badge
-                                    pill
-                                    :to="{ path: '/assets/docs/Preconisations_de_gestion_chat_forestier.pdf'}"
-                                    target="_blank"
-                                    variant="info"
-                            >Fiche
-                            </b-badge>
-                        </h4>
-                        <p>{{featureProps.pres_chatforest}}</p>
                     </div>
                     <div v-if="featureProps.pres_castor">
                         <h4>
@@ -363,7 +339,7 @@
                     });
                 axios
                     .get(
-                        "https://data.fauneauvergnerhonealpes.org/getdatas/getData.php?geotable=webgis.draaf_esp_foret_v2&geomfield=geom&fields=nb_data,nb_sp_total,pres_castor,list_chiro,pres_chatforest,list_amphib,list_rap_ard,list_tetrao,list_pics,list_esp_vieil_foret,list_esp_semi_ouv,list_chouettes,list_prebois&parameters=dept+ilike+%27" +
+                        "https://data.fauneauvergnerhonealpes.org/getdatas/getData.php?geotable=webgis.vm_foret_data_synthese&geomfield=geom&fields=nb_sp_total,list_chiro,pres_castor,list_amphib,list_rap_ard,list_tetrao,list_pics,list_esp_vieil_foret,list_esp_semi_ouv,list_chouettes,list_prebois&parameters=dept+ilike+%27" +
                         this.dept +
                         "%27"
                     )
@@ -563,9 +539,6 @@
         height: 100%;
     }
 
-    .nbdata h4 {
-        color: orangered;
-    }
 
     .datas {
         border-left: 1px solid teal;
