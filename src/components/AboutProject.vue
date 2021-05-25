@@ -7,7 +7,7 @@
                     <h2>
                         Valorisation des connaissances sur les espèces forestières pour une meilleure prise en compte
                         dans la gestion forestière</h2>
-                    <p>Cette action, réalisée par la LPO Auvergne-Rhône-Alpes et soutenue financièrement par la DRAAF et
+                    <p>Cette action, réalisée par la LPO Auvergne-Rhône-Alpes et soutenue financièrement par l'Etat et
                         la Région Auvergne-Rhône-Alpes a pour objectif de porter à connaissances des gestionnaires
                         forestiers les informations sur la présence d’espèces sensibles à la gestion forestière et de
                         diffuser des recommandations d’intervention.</p>
@@ -16,8 +16,8 @@
                         <a href="http://www.auvergnerhonealpes.fr/"><img id="logo_region"
                                                                          src="@/assets/logo_region_aura.svg"></a>&nbsp;&nbsp;
                         &nbsp;
-                        <a href="http://draaf.auvergne-rhone-alpes.agriculture.gouv.fr/"><img id="logo_region"
-                                                                                              src="@/assets/logo_draaf.png"></a>
+                        <a href="https://www.prefectures-regions.gouv.fr/auvergne-rhone-alpes"><img id="logo_pref_aura"
+                                                                                              src="@/assets/logo_pref_aura.svg"></a>
                     </p>
                     <h2>Méthode</h2>
                     <p>Ce portail cartographique présente à l’échelle de mailles kilométriques, la présence avérée et
@@ -48,7 +48,7 @@
                     <h3>Analyses statistiques des données</h3>
                     <b>LPO Auvergne-Rhône-Alpes</b> : Arthur VERNET
                     <h3>Préparation des données pour la mise en ligne</h3>
-                    <b>LPO Auvergne-Rhône-Alpes</b> : Lana PETROD
+                    <b>LPO Auvergne-Rhône-Alpes</b> : Lana PETROD, Marianne BRICQUIR
                     <h3>Conception web et mise en ligne</h3>
                     <b>LPO Auvergne-Rhône-Alpes</b> : Frédéric CLOITRE
                 </b-tab>
@@ -56,7 +56,11 @@
                     <div>
                         <h3>Cette carte a été développée par la LPO Auvergne-Rhône-Alpes à l'aide des outils</h3>
                         <h4>Analyses statistiques des données</h4>
-                        A venir
+                        Les analyses ont consisté en une modélisation de niche écologique. Pour chaque espèce, nous avons travaillé avec les données de présence et une trentaine de variables environnementales et abiotiques.
+                        La corrélation de ces variables a été testée avec le logiciel ENMTools (Warren et al. 2010) etseulement 13 variables ont été conservées pour la modélisation.
+                        La modélisation a été effectuée avec le logiciel R 3.5.2 et le package Biomod2 (Thuiller et al. 2016).
+                        <br>
+                        <br>
                         <h4>Préparation et diffusion des données</h4>
                         <ul>
                             <li>Un serveur de bases de données
@@ -111,9 +115,14 @@
                             align="center"
                     >
                         <b-card-text align="justify">
+                            Le code source de l'application est dispinible sur <b-link href="https://github.com/lpoaura/EspecesForetsAuRA" target="_blank"><code> GitHub</code></b-link>.
+                            <br>
+                            <br>
                             L’ensemble des données naturalistes régionales sont issues des bases de données des
                             associations naturalistes (LPO,
                             Chauves-souris Auvergne, Groupe Mammalogique d’Auvergne, CPIE).
+                            <br>
+                            <br>
                             <div class="text-center">
                                 <a href="http://auvergne-rhone-alpes.lpo.fr/" target="_blank">
                                     <img class="imgTable" src="@/assets/logo_lpo.png" alt="logo LpoAuRA"></a>&nbsp;
