@@ -2,7 +2,7 @@
 
 Site internet de présentation des espèces de vertébrés forestiers à enjeux en Auvergne Rhône-Alpes développé par la LPO Auvergne-Rhône-Alpes dans le cadre d'un programme mené avec le soutien financier de la région Auvergne-Rhône-Alpes
 
-Site développé avec VueJS, Leaflet (vue2-leaflet) et BootStrap (bootstrap-vue.js).
+Minisite développé avec VueJS, Leaflet (vue2-leaflet) et BootStrap (bootstrap-vue.js).
 
 # Adresse de l'appli
 
@@ -21,6 +21,8 @@ npm run serve
 ### Compiles and minifies for production
 ```
 npm run build
+# Or for subpath
+npm run build --baseUrl="/my/sub/path/"
 ```
 
 ### Run your tests
