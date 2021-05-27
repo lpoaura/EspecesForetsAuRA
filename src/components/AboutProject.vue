@@ -27,6 +27,7 @@
                     <p>L’ensemble des données, localisées en milieux forestiers (habitats forestiers selon la BD Forêt®
                         de l’IGN ), de la région ont été extraites des bases de données naturalistes associatives (<b>LPO,
                         Chauve-Souris Auvergne, Groupe Mammalogique d’Auvergne, CPIE</b>) et de celle de l'<b>Office National des Forêts</b>.</p>
+                    <p> Les données prises en compte sont celles des 10 dernières années.</p>
                     <p>Pour chaque maille, deux informations sont présentées&nbsp;:</p>
                     <ul>
                         <li><b>les espèces observées</b>&nbsp;;</li>
