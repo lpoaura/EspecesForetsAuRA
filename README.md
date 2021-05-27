@@ -50,8 +50,8 @@ npm run lint
 
 # Un projet financé par
 * [DRAAF Auvergne-Rhône-Alpes](https://draaf.auvergne-rhone-alpes.agriculture.gouv.fr/)
-* [DREAL Auvergne-Rhône-Alpes] (http://www.auvergne-rhone-alpes.developpement-durable.gouv.fr/)
+* [DREAL Auvergne-Rhône-Alpes](http://www.auvergne-rhone-alpes.developpement-durable.gouv.fr/)
 * [Région Auvergne-Rhône-Alpes](https://www.auvergnerhonealpes.fr/)
 
-<p style="text-align: center;"><img src="src/assets/logo_pref_aura.svg.png" height="100" style="align: center;" alt="DRAAF AuRA"/>&nbsp;<img src="src/assets/logo_region_aura.svg" height="100" style="align: center;" alt="Région AuRA"/></p>
+<p style="text-align: center;"><img src="src/assets/logo_pref_aura.svg" height="100" style="align: center;" alt="Etat AuRA"/>&nbsp;<img src="src/assets/logo_region_aura.svg" height="100" style="align: center;" alt="Région AuRA"/></p>
 
