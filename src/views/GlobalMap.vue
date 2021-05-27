@@ -5,7 +5,7 @@
             <l-geo-json :geojson="geojsonDept" :options="options" :optionsStyle="styleDept"/>
             <l-control class="logo_region" :position="logoPosition">
                 <p>
-                    <small>Avec le soutien financier de</small>
+                    <small><b>Avec le soutien financier de</b></small>
                 </p>
                 <a href="http://www.auvergnerhonealpes.fr/" target="_blank"><img id="logo_region"
                                                                  src="@/assets/logo_region_aura.svg"></a> &nbsp;&nbsp;
