@@ -134,7 +134,7 @@
                             <br>
                             L’ensemble des données naturalistes régionales sont issues des bases de données des
                             associations naturalistes (LPO,
-                            Chauves-souris Auvergne, Groupe Mammalogique d’Auvergne, CPIE).
+                            Chauves-souris Auvergne, Groupe Mammalogique d’Auvergne, CPIE) ainsi que de celle de l'ONF.
                             <br>
                             <br>
                             <div class="text-center">
@@ -143,12 +143,15 @@
                                 <a href="http://cpie-clermont-domes.org/presentation-du-centre-de-ressources-du-cpie-clermont-domes/observatoire-des-amphibiens/"
                                    target="_blank">
                                     <img class="imgTable" src="@/assets/logo_urcpie.jpg" alt="logo OAA"></a>&nbsp;
+                            <br>
                                 <a href="http://www.chauve-souris-auvergne.fr/" target="_blank">
                                     <img class="imgTable" src="@/assets/logo_csa.jpg" alt="logo CSA"></a>&nbsp;
                                 <a href="http://mammiferes.org/" target="_blank">
                                     <img class="imgTable" src="@/assets/logo_gma.jpg" alt="logo GMA"></a>&nbsp;
                                 <a href="http://urcpie-aura.org/" target="_blank">
                                     <img class="imgTable" src="@/assets/logo_ora.png" alt="logo URCPIE"></a>
+                                <a href="https://www.onf.fr/onf/actualites-auvergne-rhone-alpes" target="_blank">
+                                    <img class="imgTable" src="@/assets/logo_onf.png" alt="logo ONF"></a>
                             </div>
                         </b-card-text>
                     </b-card>
