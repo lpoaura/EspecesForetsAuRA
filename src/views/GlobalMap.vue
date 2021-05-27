@@ -20,7 +20,7 @@
                 <p><strong>Cette carte interactive est une représentation de la connaissance actuelle. L’absence
                     d’espèce sur certaines mailles peut être due à un défaut de prospection et non à une vraie absence.
                     Il faut donc rester prudent quant à l’interprétation de cette carte.</strong></p>
-                <p>Vous trouverez plus de précisions sur les méthodologies employées dans le « à propos ».</p>
+                <p>Vous trouverez plus de précisions sur les méthodologies employées dans l'onglet « Le projet ».</p>
                 <p>Un projet réalisé avec le soutien financier de :</p>
                 <div class="text-center">
                         <div class="logo">
