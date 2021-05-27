@@ -25,8 +25,8 @@
                     <p>Les espèces sélectionnées ont été choisies en fonction de leur statut sur les listes rouges
                         régionales et de leur sensibilité à la gestion forestière.</p>
                     <p>L’ensemble des données, localisées en milieux forestiers (habitats forestiers selon la BD Forêt®
-                        de l’IGN ), de la région ont été extraites des bases de données naturalistes associatives (LPO,
-                        Chauve-Souris Auvergne, Groupe Mammalogique d’Auvergne, CPIE) et de celle de l'Office National des Forêts.</p>
+                        de l’IGN ), de la région ont été extraites des bases de données naturalistes associatives (<b>LPO,
+                        Chauve-Souris Auvergne, Groupe Mammalogique d’Auvergne, CPIE</b>) et de celle de l'<b>Office National des Forêts</b>.</p>
                     <p>Pour chaque maille, deux informations sont présentées&nbsp;:</p>
                     <ul>
                         <li><b>les espèces observées</b>&nbsp;;</li>
@@ -36,19 +36,20 @@
                             espèces listées entre parenthèses.
                         </li>
                     </ul>
-                    <p>Les espèces et groupes d'espèces suivants ont été pris en compte, chacun faisant l'objet d'une fiche de préconisations :</p>
+                    <p>Les espèces et groupes d'espèces suivants ont été pris en compte :</p>
                     <ul>    
-                        <li>les amphibiens (pélobate cultripède, tritons crêté et ponctué, sonneur à ventre jaune) </li>
-                        <li>le castor d'Europe </li>
-                        <li>les chauves-souris (grand rhinolophe, rhinolophe euryale, murins de Bechstein et de Brandt, barbastelle d'Europe, grande noctule, grand murin) </li>
-                        <li>les petites chouettes de montagne (chevêchette d'Europe et chouette de de Tengmalm) </li>
-                        <li>les pics (pics cendré, mar, tridactyle et noir)</li>
-                        <li>le tétras-lyre</li>
-                        <li>les rapaces et ardéidés (aigles botté et royal, milan royal, autour des palombes, bondrée apivore, circaète Jean-le-Blanc, grand-duc d'Europe, vautour moine, bihoreau gris et cigogne noire)</li>
-                        <li>les espèces de milieux semi-ouvert (engoulevent d'Europe, busard Saint-Martin, pouillot de BOnelli et lézard des souches)</li>
-                        <li>le grand tétras et la gélinotte des bois</li>
-                        <li>le gobemouche noir et le pouillot siffleur</li>
+                        <li><b>les amphibiens</b> (pélobate cultripède, tritons crêté et ponctué, sonneur à ventre jaune) ; </li>
+                        <li><b>le castor d'Europe</b> ;</li>
+                        <li><b>les chauves-souris</b> (grand rhinolophe, rhinolophe euryale, murins de Bechstein et de Brandt, barbastelle d'Europe, grande noctule, grand murin) ;</li>
+                        <li><b>les petites chouettes de montagne</b> (chevêchette d'Europe et chouette de de Tengmalm) ;</li>
+                        <li><b>les pics</b> (pics cendré, mar, tridactyle et noir) ;</li>
+                        <li><b>le tétras-lyre</b> ;</li>
+                        <li><b>les rapaces et ardéidés</b> (aigles botté et royal, milan royal, autour des palombes, bondrée apivore, circaète Jean-le-Blanc, grand-duc d'Europe, vautour moine, bihoreau gris et cigogne noire) ;</li>
+                        <li><b>les espèces de milieux semi-ouvert</b> (engoulevent d'Europe, busard Saint-Martin, pouillot de BOnelli et lézard des souches) ;</li>
+                        <li><b>le grand tétras et la gélinotte des bois</b> ;</li>
+                        <li><b>le gobemouche noir et le pouillot siffleur</b>.</li>
                     </ul>
+                     chaque espèce ou groupe d'espèces cités ci-dessus fait l'objet d'une fiche fiche de préconisations de gestion.
                     <br/>
 
                 </b-tab>
