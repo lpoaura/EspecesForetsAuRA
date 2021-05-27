@@ -15,11 +15,11 @@
                         <img class="logos img-fluid" src="@/assets/logo_csa.jpg" alt="logo CSA"></a>&nbsp;
                     <a href="http://mammiferes.org/" target="_blank">
                         <img class="logos img-fluid" src="@/assets/logo_gma.jpg" alt="logo GMA"></a>&nbsp;
-                    <a href="http://urcpie-aura.org/" target="_blank">
-                        <img class="logos img-fluid" src="@/assets/logo_ora.png" alt="logo URCPIE"></a>
+                    <a href="https://www.onf.fr/onf/actualites-auvergne-rhone-alpes" target="_blank">
+                        <img class="logos img-fluid" src="@/assets/logo_onf.png" alt="logo ONF"></a>&nbsp;
                 </div>
             </b-navbar-brand>
-            <span class="navbar-text d-none d-md-block"> Espèce de vertébrés forestiers à enjeux&nbsp;</span><i v-if='deptName'>({{deptName}})</i>
+            <span class="navbar-text d-none d-md-block"> <b>Espèces de vertébrés forestiers à enjeux</b>&nbsp;</span><i v-if='deptName'>({{deptName}})</i>
 
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
