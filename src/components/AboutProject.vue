@@ -29,15 +29,17 @@
                         Chauve-Souris Auvergne, Groupe Mammalogique d’Auvergne, CPIE) et de celle de l'Office National des Forêts.</p>
                     <p>Pour chaque maille, deux informations sont présentées&nbsp;:</p>
                     <ul>
-                        <li>les espèces observées&nbsp;;</li>
-                        <li>les espèces probablement présentes. Cette probabilité a été calculée via une méthode
+                        <li><b>les espèces observées</b>&nbsp;;</li>
+                        <li><b>les espèces probablement présentes</b>. Cette probabilité a été calculée via une méthode
                             statistique (<code>Biomod2</code>) en mettant en
                             relation des données environnementales et les données de présence de l’espèce. Il s’agit des
                             espèces listées entre parenthèses.
                         </li>
-                    Les espèces et groupes d'espèces suivants ont été pris en compte, chacun faisant l'objet d'une fiche de préconisations :
+                    </ul>
+                    <p>Les espèces et groupes d'espèces suivants ont été pris en compte, chacun faisant l'objet d'une fiche de préconisations :</p>
+                    <ul>    
                         <li>les amphibiens (pélobate cultripède, tritons crêté et ponctué, sonneur à ventre jaune) </li>
-                        <li>le castor d'Euroep </li>
+                        <li>le castor d'Europe </li>
                         <li>les chauves-souris (grand rhinolophe, rhinolophe euryale, murins de Bechstein et de Brandt, barbastelle d'Europe, grande noctule, grand murin) </li>
                         <li>les petites chouettes de montagne (chevêchette d'Europe et chouette de de Tengmalm) </li>
                         <li>les pics (pics cendré, mar, tridactyle et noir)</li>
