@@ -1,6 +1,6 @@
 # ForetAuraVue
 
-Site internet de présentation des espèces de vertébrés forestiers à enjeux en Auvergne Rhône-Alpes développé par la LPO Auvergne-Rhône-Alpes dans le cadre d'un programme mené avec le soutien financier de la région Auvergne-Rhône-Alpes
+Site internet de présentation des espèces de vertébrés forestiers à enjeux en Auvergne Rhône-Alpes développé par la LPO Auvergne-Rhône-Alpes dans le cadre d'un programme mené avec le soutien financier de la Région Auvergne-Rhône-Alpes puis de la DRAAF et la DREAL Auvergne-Rhône-Alpes.
 
 Minisite développé avec VueJS, Leaflet (vue2-leaflet) et BootStrap (bootstrap-vue.js).
 
@@ -50,7 +50,8 @@ npm run lint
 
 # Un projet financé par
 * [DRAAF Auvergne-Rhône-Alpes](https://draaf.auvergne-rhone-alpes.agriculture.gouv.fr/)
+* [DREAL Auvergne-Rhône-Alpes] (http://www.auvergne-rhone-alpes.developpement-durable.gouv.fr/)
 * [Région Auvergne-Rhône-Alpes](https://www.auvergnerhonealpes.fr/)
 
-<p style="text-align: center;"><img src="src/assets/logo_draaf.png" height="100" style="align: center;" alt="DRAAF AuRA"/>&nbsp;<img src="src/assets/logo_region_aura.svg" height="100" style="align: center;" alt="Région AuRA"/></p>
+<p style="text-align: center;"><img src="src/assets/logo_pref_aura.svg.png" height="100" style="align: center;" alt="DRAAF AuRA"/>&nbsp;<img src="src/assets/logo_region_aura.svg" height="100" style="align: center;" alt="Région AuRA"/></p>
 
