@@ -25,9 +25,8 @@
                     <p>Les espèces sélectionnées ont été choisies en fonction de leur statut sur les listes rouges
                         régionales et de leur sensibilité à la gestion forestière.</p>
                     <p>L’ensemble des données, localisées en milieux forestiers (habitats forestiers selon la BD Forêt®
-                        de l’IGN ), de l’ensemble de la région ont été extraites des bases de données naturalistes (LPO,
-                        Chauve-Souris Auvergne, Groupe Mammalogique d’Auvergne, CPIE) et utilisées pour la réalisation
-                        de ces cartes.</p>
+                        de l’IGN ), de la région ont été extraites des bases de données naturalistes associatives (LPO,
+                        Chauve-Souris Auvergne, Groupe Mammalogique d’Auvergne, CPIE) et de celle de l'Office National des Forêts.</p>
                     <p>Pour chaque maille, deux informations sont présentées&nbsp;:</p>
                     <ul>
                         <li>les espèces observées&nbsp;;</li>
@@ -36,11 +35,22 @@
                             relation des données environnementales et les données de présence de l’espèce. Il s’agit des
                             espèces listées entre parenthèses.
                         </li>
+                    Les espèces et groupes d'espèces suivants ont été pris en compte, chacun faisant l'objet d'une fiche de préconisations :
+                        <li>les amphibiens (pélobate cultripède, tritons crêté et ponctué, sonneur à ventre jaune) </li>
+                        <li>le castor d'Euroep </li>
+                        <li>les chauves-souris (grand rhinolophe, rhinolophe euryale, murins de Bechstein et de Brandt, barbastelle d'Europe, grande noctule, grand murin) </li>
+                        <li>les petites chouettes de montagne (chevêchette d'Europe et chouette de de Tengmalm) </li>
+                        <li>les pics (pics cendré, mar, tridactyle et noir)</li>
+                        <li>le tétras-lyre</li>
+                        <li>les rapaces et ardéidés (aigles botté et royal, milan royal, autour des palombes, bondrée apivore, circaète Jean-le-Blanc, grand-duc d'Europe, vautour moine, bihoreau gris et cigogne noire)</li>
+                        <li>les espèces de milieux semi-ouvert (engoulevent d'Europe, busard Saint-Martin, pouillot de BOnelli et lézard des souches)</li>
+                        <li>le grand tétras et la gélinotte des bois</li>
+                        <li>le gobemouche noir et le pouillot siffleur</li>
                     </ul>
                     <br/>
 
                 </b-tab>
-                <b-tab title="Qui?">
+                <b-tab title="Qui ?">
                     <h3>Contact régional</h3>
                     <b>LPO Auvergne-Rhône-Alpes</b> : Julien GIRARD-CLAUDON
                     <h3>Organisation, animation et rédaction</h3>
