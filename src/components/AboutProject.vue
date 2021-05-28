@@ -25,7 +25,7 @@
                     <p>Les espèces sélectionnées ont été choisies en fonction de leur statut sur les listes rouges
                         régionales et de leur sensibilité à la gestion forestière.</p>
                     <p>L’ensemble des données, localisées en milieux forestiers (habitats forestiers selon la BD Forêt®
-                        de l’IGN ), de la région ont été extraites des bases de données naturalistes associatives (<b>LPO,
+                        de l’IGN ), de la région ont été extraites des bases de données naturalistes associatives (<b>LPO Auvergne-Rhône-Alpes,
                         Chauve-Souris Auvergne, Groupe Mammalogique d’Auvergne, CPIE</b>) et de celle de l'<b>Office National des Forêts</b>.</p>
                     <p> Les données prises en compte sont celles des 10 dernières années.</p>
                     <p>Pour chaque maille, deux informations sont présentées&nbsp;:</p>
@@ -42,15 +42,15 @@
                         <li><b>les amphibiens</b> (pélobate cultripède, tritons crêté et ponctué, sonneur à ventre jaune) ; </li>
                         <li><b>le castor d'Europe</b> ;</li>
                         <li><b>les chauves-souris</b> (grand rhinolophe, rhinolophe euryale, murins de Bechstein et de Brandt, barbastelle d'Europe, grande noctule, grand murin) ;</li>
-                        <li><b>les petites chouettes de montagne</b> (chevêchette d'Europe et chouette de de Tengmalm) ;</li>
+                        <li><b>les petites chouettes de montagne</b> (chevêchette d'Europe, chouette de Tengmalm) ;</li>
                         <li><b>les pics</b> (pics cendré, mar, tridactyle et noir) ;</li>
                         <li><b>le tétras-lyre</b> ;</li>
-                        <li><b>les rapaces et ardéidés</b> (aigles botté et royal, milan royal, autour des palombes, bondrée apivore, circaète Jean-le-Blanc, grand-duc d'Europe, vautour moine, bihoreau gris et cigogne noire) ;</li>
-                        <li><b>les espèces de milieux semi-ouvert</b> (engoulevent d'Europe, busard Saint-Martin, pouillot de BOnelli et lézard des souches) ;</li>
+                        <li><b>les rapaces et ardéidés</b> (aigles botté et royal, milan royal, autour des palombes, bondrée apivore, circaète Jean-le-Blanc, grand-duc d'Europe, vautour moine, bihoreau gris, cigogne noire) ;</li>
+                        <li><b>les espèces de milieux semi-ouvert</b> (engoulevent d'Europe, busard Saint-Martin, pouillot de Bonelli, lézard des souches) ;</li>
                         <li><b>le grand tétras et la gélinotte des bois</b> ;</li>
                         <li><b>le gobemouche noir et le pouillot siffleur</b>.</li>
                     </ul>
-                     chaque espèce ou groupe d'espèces cités ci-dessus fait l'objet d'une fiche fiche de préconisations de gestion.
+                     Chaque espèce ou groupe d'espèces cités ci-dessus fait l'objet d'une fiche fiche de préconisations de gestion.
                     <br/>
 
                 </b-tab>
@@ -66,7 +66,7 @@
                     <h3>Conception web et mise en ligne</h3>
                     <b>LPO Auvergne-Rhône-Alpes</b> : Frédéric CLOITRE
                 </b-tab>
-                <b-tab title="Informations sur l'appli">
+                <b-tab title="Informations sur l'outil">
                     <div>
                         <h3>Cette carte a été développée par la LPO Auvergne-Rhône-Alpes à l'aide des outils</h3>
                         <h4>Analyses statistiques des données</h4>
@@ -143,6 +143,7 @@
                                 <a href="http://cpie-clermont-domes.org/presentation-du-centre-de-ressources-du-cpie-clermont-domes/observatoire-des-amphibiens/"
                                    target="_blank">
                                     <img class="imgTable" src="@/assets/logo_urcpie.jpg" alt="logo OAA"></a>&nbsp;
+                            <br>
                             <br>
                                 <a href="http://www.chauve-souris-auvergne.fr/" target="_blank">
                                     <img class="imgTable" src="@/assets/logo_csa.jpg" alt="logo CSA"></a>&nbsp;

@@ -17,8 +17,8 @@
                     >
                         <p>Cette carte est une représentation actuelle du niveau de connaissance des espèces dans
                             les forêts d’Auvergne-Rhône-Alpes. L’absence d’espèce sur certaines mailles peut être
-                            due à un défaut de prospection et non à une vraie absence. Il faut donc rester prudent
-                            quant à l’interprétation de cette carte.</p>
+                            due à un défaut de prospection et non à une vraie absence. </p> 
+                        <p><strong> Il faut donc rester prudent quant à l’interprétation de cette carte.</strong></p>
                     </b-alert>
                 </div>
                 <!--                <div v-if="loading" class="loader"></div>-->
