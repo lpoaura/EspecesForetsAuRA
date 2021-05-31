@@ -12,7 +12,9 @@
             <a href="http://mammiferes.org/" target="_blank">
                 <img class="imgTable" src="@/assets/logo_gma.jpg" alt="logo GMA"></a>&nbsp;
             <a href="http://urcpie-aura.org/" target="_blank">
-                <img class="imgTable" src="@/assets/logo_ora.png" alt="logo URCPIE"></a>
+                <img class="imgTable" src="@/assets/logo_ora.png" alt="logo URCPIE"></a>&nbsp;
+            <a href="https://www.onf.fr/onf/actualites-auvergne-rhone-alpes" target="_blank">
+                <img class="imgTable" src="@/assets/logo_onf.png" alt="logo ONF"></a>&nbsp;
         </div>
     </b-modal>
 </template>
