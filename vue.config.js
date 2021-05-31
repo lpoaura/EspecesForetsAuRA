@@ -1,6 +1,5 @@
 const path = require("path");
 const PrerenderSPAPlugin = require("prerender-spa-plugin");
-s;
 
 module.exports = {
   publicPath: process.env.NODE_ENV === "production" ? "/" : "/",
