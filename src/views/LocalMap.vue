@@ -100,7 +100,7 @@
                             Chauves-souris
                             <b-badge
                                     pill
-                                    :to="{ path: '/assets/docs/Preconisations_de_gestion_chiropteres.pdf'}"
+                                    :to="{ path: '/docs/Preconisations_de_gestion_chiropteres.pdf'}"
                                     target="_blank"
                                     variant="info"
                             >Fiche
@@ -113,7 +113,7 @@
                             Castor d'Europe
                             <b-badge
                                     pill
-                                    :to="{ path: '/assets/docs/Preconisations_de_gestion_castor.pdf'}"
+                                    :to="{ path: '/docs/Preconisations_de_gestion_castor.pdf'}"
                                     target="_blank"
                                     variant="info"
                             >Fiche
@@ -126,7 +126,7 @@
                             Amphibiens
                             <b-badge
                                     pill
-                                    :to="{ path: '/assets/docs/Preconisations_de_gestion_amphibiens.pdf'}"
+                                    :to="{ path: '/docs/Preconisations_de_gestion_amphibiens.pdf'}"
                                     target="_blank"
                                     variant="info"
                             >Fiche
@@ -139,7 +139,7 @@
                             Rapaces & Ardéidés
                             <b-badge
                                     pill
-                                    :to="{ path: '/assets/docs/Preconisations_de_gestion_rapaces_ardeides.pdf'}"
+                                    :to="{ path: '/docs/Preconisations_de_gestion_rapaces_ardeides.pdf'}"
                                     target="_blank"
                                     variant="info"
                             >Fiche
@@ -152,7 +152,7 @@
                             Tétraonidés
                             <b-badge
                                     pill
-                                    :to="{ path: '/assets/docs/Preconisations_de_gestion_tetraonides.pdf'}"
+                                    :to="{ path: '/docs/Preconisations_de_gestion_tetraonides.pdf'}"
                                     target="_blank"
                                     variant="info"
                             >Fiche
@@ -165,7 +165,7 @@
                             Pics
                             <b-badge
                                     pill
-                                    :to="{ path: '/assets/docs/Preconisations_de_gestion_pics.pdf'}"
+                                    :to="{ path: '/docs/Preconisations_de_gestion_pics.pdf'}"
                                     target="_blank"
                                     variant="info"
                             >Fiche
@@ -178,7 +178,7 @@
                             Chouettes
                             <b-badge
                                     pill
-                                    :to="{ path: '/assets/docs/Preconisations_de_gestion_chouettes.pdf'}"
+                                    :to="{ path: '/docs/Preconisations_de_gestion_chouettes.pdf'}"
                                     target="_blank"
                                     variant="info"
                             >Fiche
@@ -191,7 +191,7 @@
                             Espèces de vieilles forêts
                             <b-badge
                                     pill
-                                    :to="{ path: '/assets/docs/Preconisations_de_gestion_vieilles_foret.pdf'}"
+                                    :to="{ path: '/docs/Preconisations_de_gestion_vieilles_foret.pdf'}"
                                     target="_blank"
                                     variant="info"
                             >Fiche
@@ -204,7 +204,7 @@
                             Espèces de milieux semi-ouverts
                             <b-badge
                                     pill
-                                    :to="{ path: '/assets/docs/Preconisations_de_gestion_semi_ouverts.pdf'}"
+                                    :to="{ path: '/docs/Preconisations_de_gestion_semi_ouverts.pdf'}"
                                     target="_blank"
                                     variant="info"
                             >Fiche
@@ -217,7 +217,7 @@
                             Espèces de prébois
                             <b-badge
                                     pill
-                                    :to="{ path: '/assets/docs/Preconisations_de_gestion_prebois.pdf'}"
+                                    :to="{ path: '/docs/Preconisations_de_gestion_prebois.pdf'}"
                                     target="_blank"
                                     variant="info"
                             >Fiche
