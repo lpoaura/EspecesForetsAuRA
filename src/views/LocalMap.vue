@@ -335,7 +335,7 @@
                 this.dept = this.$route.params.dept;
                 axios
                     .get(
-                        "https://data.fauneauvergnerhonealpes.org/getdatas/getData.php?geotable=webgis.departements_aura&geomfield=geom&fields=code_dept,nom_dept&parameters=code_dept+ilike+%27" +
+                        "https://data.lpo-aura.org/web/getdatas/getData.php?geotable=webgis.departements_aura&geomfield=geom&fields=code_dept,nom_dept&parameters=code_dept+ilike+%27" +
                         this.dept +
                         "%27"
                     )
@@ -350,7 +350,7 @@
                     });
                 axios
                     .get(
-                        "https://data.fauneauvergnerhonealpes.org/getdatas/getData.php?geotable=webgis.mv_foret_data_synthese&geomfield=geom&fields=nb_sp_total,list_chiro,pres_castor,list_amphib,list_rap_ard,list_tetrao,list_pics,list_esp_vieil_foret,list_esp_semi_ouv,list_chouettes,list_prebois&parameters=dept+ilike+%27" +
+                        "https://data.lpo-aura.org/web/getdatas/getData.php?geotable=webgis.mv_foret_data_synthese&geomfield=geom&fields=nb_sp_total,list_chiro,pres_castor,list_amphib,list_rap_ard,list_tetrao,list_pics,list_esp_vieil_foret,list_esp_semi_ouv,list_chouettes,list_prebois&parameters=dept+ilike+%27" +
                         this.dept +
                         "%27"
                     )
