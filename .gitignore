@@ -3,4 +3,4 @@
 node_modules
 build
 dist
-public/index.html
+# public/index.html
