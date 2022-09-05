@@ -96,7 +96,7 @@
                 this.loading = true;
                 axios
                     .get(
-                        "https://data.lpo-aura.org/web/getdatas/getData.php?geotable=webgis.departements_aura&geomfield=geom&fields=code_dept,nom_dept"
+                        "https://data.lpo-aura.org/web/getdatas/getData.php?geotable=opendata.departements_aura&geomfield=geom&fields=code_dept,nom_dept"
                     )
                     .then(response => {
                         this.geojsonDept = response.data;
