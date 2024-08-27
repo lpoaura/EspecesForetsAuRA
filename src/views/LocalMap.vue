@@ -350,7 +350,7 @@
                     });
                 axios
                     .get(
-                        "https://data.lpo-aura.org/web/getdatas/getData.php?geotable=opendata.mv_foret_data_synthese&geomfield=geom&fields=nb_sp_total,list_chiro,pres_castor,list_amphib,list_rap_ard,list_tetrao,list_pics,list_esp_vieil_foret,list_esp_semi_ouv,list_chouettes,list_prebois&parameters=dept+ilike+%27" +
+                        "https://data.lpo-aura.org/web/getdatas/getData.php?geotable=lizmap.mv_foret_data_synthese&geomfield=geom&fields=nb_sp_total,list_chiro,pres_castor,list_amphib,list_rap_ard,list_tetrao,list_pics,list_esp_vieil_foret,list_esp_semi_ouv,list_chouettes,list_prebois&parameters=dept+ilike+%27" +
                         this.dept +
                         "%27"
                     )
