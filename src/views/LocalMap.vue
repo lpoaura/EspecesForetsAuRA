@@ -335,7 +335,7 @@
                 this.dept = this.$route.params.dept;
                 axios
                     .get(
-                        "https://data.lpo-aura.org/web/getdatas/getData.php?geotable=opendata.departements_aura&geomfield=geom&fields=code_dept,nom_dept&parameters=code_dept+ilike+%27" +
+                        "https://data.lpo-aura.org/web/getdatas/getData.php?geotable=lizmap.v_foret_dep&geomfield=geom&fields=code_dept,nom_dept&parameters=code_dept+ilike+%27" +
                         this.dept +
                         "%27"
                     )
